@@ -8,6 +8,13 @@
       "when": 1741192750260,
       "tag": "0000_futuristic_otto_octavius",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1741193007711,
+      "tag": "0001_pink_jean_grey",
+      "breakpoints": true
     }
   ]
 }

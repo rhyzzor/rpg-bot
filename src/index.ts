@@ -2,6 +2,7 @@ import { Client, Events, GatewayIntentBits } from "discord.js";
 import { commands } from "./commands";
 import { deployCommands } from "./commands/deploy";
 import { env } from "./env";
+import { createGuildUseCase } from "./use-cases/create-guild";
 
 const client = new Client({
 	intents: [
@@ -12,12 +13,15 @@ const client = new Client({
 	],
 });
 
-client.once(Events.ClientReady, (readyClient) => {
+client.once(Events.ClientReady, async (readyClient) => {
 	console.log("Ready! Logged in as ", readyClient.user.tag);
 });
 
 client.on(Events.GuildCreate, async (guild) => {
-	await deployCommands({ guildId: guild.id });
+	await Promise.all([
+		deployCommands({ guildId: guild.id }),
+		createGuildUseCase(guild.id),
+	]);
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
@@ -27,7 +31,9 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
 	const { commandName } = interaction;
 
-	const selectedCommand = commands[commandName as keyof typeof commands];
+	const selectedCommand = Object.values(commands).find(
+		(command) => command.data.name === commandName,
+	);
 
 	if (selectedCommand) {
 		selectedCommand.execute(interaction);
@@ -35,5 +41,3 @@ client.on(Events.InteractionCreate, async (interaction) => {
 });
 
 client.login(env.DISCORD_TOKEN);
-
-console.log(env);

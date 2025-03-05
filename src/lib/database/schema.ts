@@ -2,7 +2,7 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const guildTable = sqliteTable("guild", {
 	id: integer("id").primaryKey({ autoIncrement: true }),
-	externalId: text("external_id").notNull(),
+	externalId: text("external_id").notNull().unique(),
 });
 
 export const itemTable = sqliteTable("item", {
