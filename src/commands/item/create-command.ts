@@ -8,39 +8,43 @@ export const data = new SlashCommandBuilder()
 	.setDescription("Cria um novo item");
 
 export async function execute(interaction: CommandInteraction) {
-	const customId = `create-item-modal.${interaction.id}`;
+	try {
+		const customId = `create-item-modal.${interaction.id}`;
 
-	const modal = generateItemModal({ customId, title: "Criar um novo item" });
+		const modal = generateItemModal({ customId, title: "Criar um novo item" });
 
-	await interaction.showModal(modal);
+		await interaction.showModal(modal);
 
-	interaction
-		.awaitModalSubmit({
-			filter: (i) => i.customId === customId,
-			time: 60000,
-		})
-		.then(async (modalInteraction) => {
-			if (!modalInteraction.guildId) {
-				return await modalInteraction.reply("Não foi possível criar o item");
-			}
+		interaction
+			.awaitModalSubmit({
+				filter: (i) => i.customId === customId,
+				time: 60000,
+			})
+			.then(async (modalInteraction) => {
+				if (!modalInteraction.guildId) {
+					return await modalInteraction.reply("Não foi possível criar o item");
+				}
 
-			const getValue = (field: string) =>
-				modalInteraction.fields.getTextInputValue(field);
+				const getValue = (field: string) =>
+					modalInteraction.fields.getTextInputValue(field);
 
-			const itemName = getValue("itemNameInput");
-			const descriptionName = getValue("itemDescriptionInput");
-			const imageUrl = getValue("itemUrlInput");
+				const itemName = getValue("itemNameInput");
+				const descriptionName = getValue("itemDescriptionInput");
+				const imageUrl = getValue("itemUrlInput");
 
-			await createItemUseCase({
-				description: descriptionName,
-				guildExternalId: modalInteraction.guildId,
-				name: itemName,
-				url: imageUrl,
+				await createItemUseCase({
+					description: descriptionName,
+					guildExternalId: modalInteraction.guildId,
+					name: itemName,
+					url: imageUrl,
+				});
+
+				return await modalInteraction.reply({
+					content: `Item ${itemName} criado com sucesso!`,
+					flags: "Ephemeral",
+				});
 			});
-
-			return await modalInteraction.reply({
-				content: `Item ${itemName} criado com sucesso!`,
-				flags: "Ephemeral",
-			});
-		});
+	} catch (error) {
+		console.error(error);
+	}
 }
