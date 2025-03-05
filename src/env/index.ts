@@ -4,6 +4,8 @@ const envSchema = z.object({
 	NODE_ENV: z.enum(["dev", "test", "production"]).default("dev"),
 	DISCORD_TOKEN: z.string(),
 	DISCORD_APPLICATION_ID: z.string(),
+	TURSO_TOKEN: z.string(),
+	TURSO_URL: z.string(),
 });
 
 const _env = envSchema.safeParse(process.env);
