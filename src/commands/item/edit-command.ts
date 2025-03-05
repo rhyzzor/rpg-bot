@@ -6,7 +6,6 @@ import {
 	ActionRowBuilder,
 	type CommandInteraction,
 	ComponentType,
-	ModalBuilder,
 	SlashCommandBuilder,
 	StringSelectMenuBuilder,
 	StringSelectMenuOptionBuilder,
@@ -17,8 +16,6 @@ export const data = new SlashCommandBuilder()
 	.setDescription("Edita um item");
 
 export async function execute(interaction: CommandInteraction) {
-	const modal = new ModalBuilder().setCustomId("edit-item-modal");
-
 	if (!interaction.guild || !interaction.guildId) {
 		return interaction.reply({
 			content: "Você precisa estar em um servidor para executar esse comando",
