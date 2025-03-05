@@ -23,6 +23,7 @@ export function generateItemModal(options: ModalProps) {
 		.setCustomId("itemNameInput")
 		.setMaxLength(100)
 		.setLabel("Nome")
+		.setRequired(true)
 		.setPlaceholder("Qual o nome do seu item?")
 		.setValue(options?.name ?? "")
 		.setStyle(TextInputStyle.Short);
@@ -31,6 +32,7 @@ export function generateItemModal(options: ModalProps) {
 		.setCustomId("itemDescriptionInput")
 		.setLabel("Descrição")
 		.setMaxLength(500)
+		.setRequired(true)
 		.setValue(options?.description ?? "")
 		.setPlaceholder("Qual a descrição do seu item?")
 		.setStyle(TextInputStyle.Paragraph);
@@ -39,6 +41,7 @@ export function generateItemModal(options: ModalProps) {
 		.setCustomId("itemUrlInput")
 		.setLabel("URL")
 		.setPlaceholder("Coloque a URL da imagem do seu item")
+		.setRequired(false)
 		.setValue(options?.url ?? "")
 		.setStyle(TextInputStyle.Short);
 
