@@ -1,1 +1,0 @@
-ALTER TABLE `item` ADD `guild_id` text NOT NULL;
