@@ -26,9 +26,14 @@ export function createItemSelectionMenu({
 		.setPlaceholder("Selecione um item");
 
 	const options = items.map((item) => {
+		const description =
+			item.description.length > 90
+				? item.description.slice(0, 80).concat("...")
+				: item.description;
+
 		const option = new StringSelectMenuOptionBuilder()
 			.setLabel(item.name)
-			.setDescription(item.description.slice(0, 50).concat("..."))
+			.setDescription(description)
 			.setValue(item.id.toString());
 
 		return option;
