@@ -102,7 +102,7 @@ export async function execute(interaction: CommandInteraction) {
 					});
 
 					return await modalInteraction.reply({
-						content: `Item ${itemName}  editado com sucesso`,
+						content: `Item **${itemName}** editado com sucesso`,
 						flags: "Ephemeral",
 					});
 				});

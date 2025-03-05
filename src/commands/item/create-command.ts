@@ -40,7 +40,7 @@ export async function execute(interaction: CommandInteraction) {
 				});
 
 				return await modalInteraction.reply({
-					content: `Item ${itemName} criado com sucesso!`,
+					content: `Item **${itemName}** criado com sucesso!`,
 					flags: "Ephemeral",
 				});
 			});
