@@ -1,16 +1,11 @@
 import { createItemUseCase } from "@/use-cases/create-item";
-import {
-	ActionRowBuilder,
-	type ModalActionRowComponentBuilder,
-	ModalBuilder,
-	TextInputBuilder,
-} from "@discordjs/builders";
+import { generateItemModal } from "@/utils/modal-builder";
+import {} from "@discordjs/builders";
 import {
 	type CacheType,
 	type CommandInteraction,
 	type ModalSubmitInteraction,
 	SlashCommandBuilder,
-	TextInputStyle,
 } from "discord.js";
 
 export const data = new SlashCommandBuilder()
@@ -18,43 +13,19 @@ export const data = new SlashCommandBuilder()
 	.setDescription("Cria um novo item");
 
 export async function execute(interaction: CommandInteraction) {
-	const modal = new ModalBuilder()
-		.setCustomId("create-item-modal")
-		.setTitle("Create a new item");
+	const customId = `create-item-modal#${interaction.id}`;
 
-	const itemNameInput = new TextInputBuilder()
-		.setCustomId("itemNameInput")
-		.setMaxLength(255)
-		.setLabel("Nome")
-		.setPlaceholder("Qual o nome do seu item?")
-		.setStyle(TextInputStyle.Short);
-
-	const itemDescriptionInput = new TextInputBuilder()
-		.setCustomId("itemDescriptionInput")
-		.setLabel("Descrição")
-		.setPlaceholder("Qual a descrição do seu item?")
-		.setStyle(TextInputStyle.Paragraph);
-
-	const firstActionRow =
-		new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
-			itemNameInput,
-		);
-	const secondActionRow =
-		new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
-			itemDescriptionInput,
-		);
-
-	modal.addComponents(firstActionRow, secondActionRow);
+	const modal = generateItemModal({ customId, title: "Criar um novo item" });
 
 	await interaction.showModal(modal);
 
 	const filter = (interaction: ModalSubmitInteraction<CacheType>) =>
-		interaction.customId === "create-item-modal";
+		interaction.customId === customId;
 
 	interaction
 		.awaitModalSubmit({
 			filter,
-			time: 30000,
+			time: 60000,
 		})
 		.then(async (modalInteraction) => {
 			if (!modalInteraction.guildId) {
