@@ -1,0 +1,1 @@
+ALTER TABLE `item` ADD `url` text DEFAULT 'https://thumbs.dreamstime.com/b/povos-3d-brancos-com-um-ponto-de-interroga%C3%A7%C3%A3o-27709668.jpg' NOT NULL;
