@@ -37,11 +37,13 @@ export async function execute(interaction: CommandInteraction) {
 
 			const itemName = getValue("itemNameInput");
 			const descriptionName = getValue("itemDescriptionInput");
+			const imageUrl = getValue("itemUrlInput");
 
 			await createItemUseCase({
 				description: descriptionName,
 				guildExternalId: modalInteraction.guildId,
 				name: itemName,
+				url: imageUrl,
 			});
 
 			return await modalInteraction.reply(
