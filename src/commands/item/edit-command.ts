@@ -1,3 +1,4 @@
+import { editItemUseCase } from "@/use-cases/edit-item";
 import { findItemUseCase } from "@/use-cases/find-item";
 import { listItemsUseCase } from "@/use-cases/list-items";
 import { generateItemModal } from "@/utils/modal-builder";
@@ -72,7 +73,7 @@ export async function execute(interaction: CommandInteraction) {
 		const selectedItemId = Number(collectorInteraction.values[0]);
 
 		const item = await findItemUseCase(selectedItemId);
-		const customId = `edit-item-modal#${collectorInteraction.id}`;
+		const customId = `edit-item-modal.${collectorInteraction.id}#${item.id}`;
 
 		const editModalItem = generateItemModal({
 			...item,
@@ -82,9 +83,49 @@ export async function execute(interaction: CommandInteraction) {
 
 		await collectorInteraction.showModal(editModalItem);
 
-		collectorInteraction.awaitModalSubmit({
-			filter: (i) => i.customId === customId,
-			time: 60000,
-		});
+		collectorInteraction
+			.awaitModalSubmit({
+				filter: (i) => i.customId === customId,
+				time: 60000,
+			})
+			.then(async (modalInteraction) => {
+				const guildId = interaction.guildId;
+
+				if (!guildId) {
+					return interaction.reply({
+						content: "Ocorreu um erro ao editar o item",
+						ephemeral: true,
+					});
+				}
+
+				const getValue = (field: string) =>
+					modalInteraction.fields.getTextInputValue(field);
+
+				const itemName = getValue("itemNameInput");
+				const descriptionName = getValue("itemDescriptionInput");
+				const imageUrl = getValue("itemUrlInput");
+
+				const id = Number(modalInteraction.customId.split("#")[1]);
+
+				if (!id) {
+					return await modalInteraction.reply({
+						content: "Ocorreu um erro ao editar o item",
+						flags: "Ephemeral",
+					});
+				}
+
+				await editItemUseCase({
+					id,
+					name: itemName,
+					description: descriptionName,
+					url: imageUrl,
+					guildExternalId: guildId,
+				});
+
+				return await modalInteraction.reply({
+					content: `Item ${itemName}  editado com sucesso`,
+					flags: "Ephemeral",
+				});
+			});
 	});
 }
