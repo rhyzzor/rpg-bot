@@ -1,25 +1,22 @@
 {
-	"name": "rpg-bot",
-	"module": "index.ts",
-	"type": "module",
-	"private": true,
-	"scripts": {
-		"dev": "bun --watch run src/index.ts",
-		"db:generate:types": "bunx kysely-codegen --out-file=src/lib/database/schema/Database.ts"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@types/bun": "latest",
-		"kysely-codegen": "0.18.2",
-		"kysely-ctl": "0.12.1"
-	},
-	"peerDependencies": {
-		"typescript": "^5"
-	},
-	"dependencies": {
-		"@libsql/kysely-libsql": "0.4.1",
-		"discord.js": "14.18.0",
-		"kysely": "0.27.6",
-		"zod": "3.24.2"
-	}
+  "name": "rpg-bot",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch run src/index.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@libsql/kysely-libsql": "0.4.1",
+    "discord.js": "14.18.0",
+    "kysely": "0.27.6",
+    "zod": "3.24.2"
+  }
 }
