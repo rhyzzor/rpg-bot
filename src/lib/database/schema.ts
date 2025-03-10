@@ -13,3 +13,17 @@ export const itemTable = sqliteTable("item", {
 });
 
 export type ItemDTO = typeof itemTable.$inferSelect;
+
+type StatsType = {
+	label: string;
+	value: number;
+};
+
+export const playerTable = sqliteTable("player", {
+	id: integer("id").primaryKey({ autoIncrement: true }),
+	externalId: text("external_id"),
+	guildId: text("guild_id").notNull(),
+	name: text("name").notNull(),
+	url: text("url").notNull(),
+	stats: text("stats", { mode: "json" }).$type<StatsType[]>(),
+});
