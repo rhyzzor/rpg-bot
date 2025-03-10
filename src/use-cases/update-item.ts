@@ -11,7 +11,7 @@ interface EditItemProps {
 	guildExternalId: string;
 }
 
-export async function editItemUseCase({
+export async function updateItemUseCase({
 	id,
 	name,
 	description,

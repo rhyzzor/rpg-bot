@@ -1,67 +1,136 @@
 import { findItemUseCase } from "@/use-cases/find-item";
 import { listItemsUseCase } from "@/use-cases/list-items";
-import { createItemSelectionMenu } from "@/utils/selection-menu";
+import { showEditModal } from "@/utils/edit-item-modal";
+import type {
+	AutocompleteProps,
+	CommandOptions,
+	SlashCommandProps,
+} from "commandkit";
 import {
-	type CommandInteraction,
-	ComponentType,
+	ActionRowBuilder,
+	ButtonBuilder,
+	type ButtonInteraction,
+	ButtonStyle,
+	type CacheType,
 	EmbedBuilder,
 	SlashCommandBuilder,
 } from "discord.js";
 
 export const data = new SlashCommandBuilder()
-	.setName("listar-item")
-	.setDescription("Lista o item selecionado");
+	.setName("item")
+	.setDescription("Comandos relacionados ao item")
+	.setNameLocalizations({
+		"pt-BR": "item",
+		"en-US": "item",
+	})
+	.setDescriptionLocalizations({
+		"pt-BR": "Comandos relacionados ao item",
+		"en-US": "Commands related to item",
+	})
+	.addStringOption((option) =>
+		option
+			.setName("name")
+			.setDescription("Digite o nome do item")
+			.setRequired(true)
+			.setAutocomplete(true),
+	);
 
-export async function execute(interaction: CommandInteraction) {
-	try {
-		if (!interaction.guildId || !interaction.guild) {
-			return interaction.reply({
-				content: "Você precisa estar em um servidor para executar esse comando",
-				flags: "Ephemeral",
-			});
-		}
-
-		const items = await listItemsUseCase({
-			guildExternalId: interaction.guildId,
-		});
-
-		const selectionMenu = createItemSelectionMenu({
-			items,
-			customId: "find-item-select",
-		});
-
-		const reply = await interaction.reply({
-			components: [selectionMenu],
-			flags: "Ephemeral",
-		});
-
-		const collector = reply.createMessageComponentCollector({
-			componentType: ComponentType.StringSelect,
-			time: 30000,
-			filter: (i) =>
-				i.user.id === interaction.user.id && i.customId === "find-item-select",
-		});
-
-		collector.on("collect", async (collectorInteraction) => {
-			if (!collectorInteraction.values.length) {
-				interaction.reply("Nenhum item selecionado");
-				return;
-			}
-
-			const selectedItemId = Number(collectorInteraction.values[0]);
-			const item = await findItemUseCase(selectedItemId);
-
-			const embed = new EmbedBuilder()
-				.setColor("#ff0000")
-				.setTitle(item.name)
-				.setDescription(item.description)
-				.setThumbnail(item.url);
-
-			await collectorInteraction.reply({
-				embeds: [embed],
-			});
-		});
-	} catch (error) {
-		console.error(error);
+export async function run({ interaction }: SlashCommandProps) {
+	if (!interaction.guildId) {
+		return;
 	}
+
+	const selectedItemId = Number(interaction.options.getString("name", true));
+
+	const item = await findItemUseCase(selectedItemId);
+
+	const options = [
+		{
+			name: "Editar",
+			emoji: "📝",
+			style: ButtonStyle.Secondary,
+			execute: async (interaction: ButtonInteraction<CacheType>) => {
+				await showEditModal(item, interaction);
+			},
+		},
+		{
+			name: "Deletar",
+			emoji: "🗑️",
+			style: ButtonStyle.Danger,
+			execute: async (interaction: ButtonInteraction<CacheType>) => {
+				console.log("oii");
+			},
+		},
+	];
+
+	const buttons = options.map((option) => {
+		return new ButtonBuilder()
+			.setEmoji(option.emoji)
+			.setLabel(option.name)
+			.setStyle(option.style)
+			.setCustomId(option.name);
+	});
+
+	const embed = new EmbedBuilder()
+		.setTitle(item.name)
+		.setThumbnail(item.url)
+		.setFields({
+			name: "Descrição",
+			value: item.description,
+		});
+
+	const row = new ActionRowBuilder<ButtonBuilder>().addComponents(buttons);
+
+	const reply = await interaction.reply({ embeds: [embed], components: [row] });
+
+	const targetOptionInteraction = await reply
+		.awaitMessageComponent({
+			filter: (i) => i.user.id === interaction.user.id,
+			time: 30_000,
+		})
+		.catch(async (error) => {
+			await reply.edit({ embeds: [embed], components: [] });
+			return;
+		});
+
+	if (!targetOptionInteraction) return;
+
+	const targetOption = options.find(
+		(option) => option.name === targetOptionInteraction.customId,
+	);
+
+	if (!targetOption) return;
+
+	await targetOption.execute(
+		targetOptionInteraction as ButtonInteraction<CacheType>,
+	);
 }
+
+export async function autocomplete({ interaction }: AutocompleteProps) {
+	if (!interaction.guildId) {
+		return;
+	}
+
+	const focusedOption = interaction.options.getFocused(true).value;
+
+	const items = await listItemsUseCase({
+		guildExternalId: interaction.guildId,
+	});
+
+	const result = items
+		.filter((item) =>
+			item.name.toLowerCase().startsWith(focusedOption.toLowerCase()),
+		)
+		.map((item) => {
+			return {
+				name: item.name,
+				value: item.id.toString(),
+			};
+		});
+
+	await interaction.respond(result);
+}
+
+export const options: CommandOptions = {
+	devOnly: true,
+};
