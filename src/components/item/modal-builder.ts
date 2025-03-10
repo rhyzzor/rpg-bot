@@ -41,7 +41,7 @@ export function generateItemModal(options: ModalProps) {
 		.setCustomId("itemUrlInput")
 		.setLabel("URL")
 		.setPlaceholder("Coloque a URL da imagem do seu item")
-		.setRequired(false)
+		.setRequired(true)
 		.setValue(options?.url ?? "")
 		.setStyle(TextInputStyle.Short);
 
