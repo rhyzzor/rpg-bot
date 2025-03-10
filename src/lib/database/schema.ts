@@ -20,3 +20,5 @@ export const itemTable = sqliteTable("item", {
 		})
 		.notNull(),
 });
+
+export type ItemDTO = typeof itemTable.$inferSelect;
