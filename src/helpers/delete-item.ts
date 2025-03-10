@@ -12,7 +12,7 @@ export async function deleteItem(
 
 	await deleteItemUseCase({
 		id: item.id,
-		guildExternalId: interaction.guildId,
+		guildId: interaction.guildId,
 	});
 
 	await interaction.editReply({

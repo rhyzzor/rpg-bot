@@ -40,7 +40,7 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	await createItemUseCase({
 		description: descriptionName,
-		guildExternalId: modalInteraction.guildId,
+		guildId: modalInteraction.guildId,
 		name: itemName,
 		url: imageUrl,
 	});
