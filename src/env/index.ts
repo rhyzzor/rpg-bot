@@ -6,6 +6,7 @@ const envSchema = z.object({
 	DISCORD_APPLICATION_ID: z.string(),
 	TURSO_AUTH_TOKEN: z.string(),
 	TURSO_DATABASE_URL: z.string(),
+	DISCORD_GUILD_ID: z.string(),
 });
 
 const _env = envSchema.safeParse(process.env);
