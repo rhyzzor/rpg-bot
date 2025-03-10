@@ -1,6 +1,7 @@
+import { deleteItem } from "@/helpers/delete-item";
+import { showEditModal } from "@/helpers/edit-item-modal";
 import { findItemUseCase } from "@/use-cases/find-item";
 import { listItemsUseCase } from "@/use-cases/list-items";
-import { showEditModal } from "@/utils/edit-item-modal";
 import type {
 	AutocompleteProps,
 	CommandOptions,
@@ -57,8 +58,8 @@ export async function run({ interaction }: SlashCommandProps) {
 			name: "Deletar",
 			emoji: "🗑️",
 			style: ButtonStyle.Danger,
-			execute: async (interaction: ButtonInteraction<CacheType>) => {
-				console.log("oii");
+			execute: async (_: unknown) => {
+				await deleteItem(item, interaction);
 			},
 		},
 	];
@@ -81,17 +82,21 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	const row = new ActionRowBuilder<ButtonBuilder>().addComponents(buttons);
 
-	const reply = await interaction.reply({ embeds: [embed], components: [row] });
+	const reply = await interaction.reply({
+		embeds: [embed],
+		components: [row],
+		flags: "Ephemeral",
+	});
 
-	const targetOptionInteraction = await reply
+	const targetOptionInteraction = (await reply
 		.awaitMessageComponent({
 			filter: (i) => i.user.id === interaction.user.id,
 			time: 30_000,
 		})
-		.catch(async (error) => {
+		.catch(async (_error) => {
 			await reply.edit({ embeds: [embed], components: [] });
 			return;
-		});
+		})) as ButtonInteraction<CacheType>;
 
 	if (!targetOptionInteraction) return;
 
@@ -101,9 +106,7 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	if (!targetOption) return;
 
-	await targetOption.execute(
-		targetOptionInteraction as ButtonInteraction<CacheType>,
-	);
+	await targetOption.execute(targetOptionInteraction);
 }
 
 export async function autocomplete({ interaction }: AutocompleteProps) {
