@@ -1,5 +1,5 @@
+import { CommandKit } from "commandkit";
 import { Client, Events, GatewayIntentBits } from "discord.js";
-import { commands } from "./commands";
 import { deployCommands } from "./commands/deploy";
 import { env } from "./env";
 import { createGuildUseCase } from "./use-cases/create-guild";
@@ -11,6 +11,12 @@ const client = new Client({
 		GatewayIntentBits.GuildMessages,
 		GatewayIntentBits.MessageContent,
 	],
+});
+
+new CommandKit({
+	client,
+	commandsPath: `${__dirname}/commands`,
+	bulkRegister: true,
 });
 
 client.once(Events.ClientReady, async (readyClient) => {
@@ -25,19 +31,7 @@ client.on(Events.GuildCreate, async (guild) => {
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
-	if (!interaction.isCommand()) {
-		return;
-	}
-
-	const { commandName } = interaction;
-
-	const selectedCommand = Object.values(commands).find(
-		(command) => command.data.name === commandName,
-	);
-
-	if (selectedCommand) {
-		selectedCommand.execute(interaction);
-	}
+	// console.log(interaction);
 });
 
 client.login(env.DISCORD_TOKEN);
