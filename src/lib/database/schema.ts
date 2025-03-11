@@ -28,7 +28,6 @@ export const classTable = sqliteTable("class", {
 		.default(
 			"https://thumbs.dreamstime.com/b/povos-3d-brancos-com-um-ponto-de-interroga%C3%A7%C3%A3o-27709668.jpg",
 		),
-	guildId: text("guild_id").notNull(),
 	stats: text("stats", { mode: "json" }).$type<StatsType[]>(),
 });
 

@@ -43,6 +43,13 @@
       "when": 1741730121069,
       "tag": "0005_curved_paibok",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1741731442342,
+      "tag": "0006_living_crusher_hogan",
+      "breakpoints": true
     }
   ]
 }
