@@ -1,4 +1,4 @@
-import { generateItemModal } from "@/components/item/modal-builder";
+import { generateItemModal } from "@/components/item/modal";
 import type { ItemDTO } from "@/lib/database/schema";
 import { updateItemUseCase } from "@/use-cases/update-item";
 import type { ButtonInteraction, CacheType } from "discord.js";

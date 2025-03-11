@@ -1,4 +1,4 @@
-import { generateItemModal } from "@/components/item/modal-builder";
+import { generateItemModal } from "@/components/item/modal";
 import { createItemUseCase } from "@/use-cases/create-item";
 import type { CommandOptions, SlashCommandProps } from "commandkit";
 import { SlashCommandBuilder } from "discord.js";
