@@ -28,7 +28,7 @@ export const classTable = sqliteTable("class", {
 		.default(
 			"https://thumbs.dreamstime.com/b/povos-3d-brancos-com-um-ponto-de-interroga%C3%A7%C3%A3o-27709668.jpg",
 		),
-	stats: text("stats", { mode: "json" }).$type<StatsType[]>(),
+	stats: text("stats", { mode: "json" }).$type<StatsType[]>().notNull(),
 });
 
 export const playerTable = sqliteTable("player", {
@@ -42,5 +42,5 @@ export const playerTable = sqliteTable("player", {
 	url: text("url").notNull(),
 	background: text("background").notNull(),
 	extraDetails: text("extra_details"),
-	stats: text("stats", { mode: "json" }).$type<StatsType[]>(),
+	stats: text("stats", { mode: "json" }).$type<StatsType[]>().notNull(),
 });
