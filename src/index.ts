@@ -1,8 +1,6 @@
 import { CommandKit } from "commandkit";
 import { Client, Events, GatewayIntentBits } from "discord.js";
-import { deployCommands } from "./commands/deploy";
 import { env } from "./env";
-import { createGuildUseCase } from "./use-cases/create-guild";
 
 const client = new Client({
 	intents: [
@@ -13,21 +11,21 @@ const client = new Client({
 	],
 });
 
-new CommandKit({
+const isDev = env.NODE_ENV === "dev";
+
+const command = new CommandKit({
 	client,
 	commandsPath: `${__dirname}/commands`,
 	bulkRegister: true,
+	...(isDev && {
+		devGuildIds: [String(env.DISCORD_DEV_GUILD_ID)],
+		devUserIds: [String(env.DISCORD_DEV_USER_ID)],
+	}),
 });
 
 client.once(Events.ClientReady, async (readyClient) => {
+	if (isDev) await command.reloadCommands("dev");
 	console.log("Ready! Logged in as ", readyClient.user.tag);
-});
-
-client.on(Events.GuildCreate, async (guild) => {
-	await Promise.all([
-		deployCommands({ guildId: guild.id }),
-		createGuildUseCase(guild.id),
-	]);
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
