@@ -23,7 +23,7 @@ export const data = new SlashCommandBuilder()
 	.setDescriptionLocalizations({
 		"pt-BR": "Comandos relacionados ao item",
 	})
-	.addStringOption((option) =>
+	.addIntegerOption((option) =>
 		option
 			.setName("name")
 			.setDescription("Item name")
@@ -42,7 +42,7 @@ export async function run({ interaction }: SlashCommandProps) {
 		return;
 	}
 
-	const selectedItemId = Number(interaction.options.getString("name", true));
+	const selectedItemId = interaction.options.getInteger("name", true);
 
 	const item = await findItemUseCase(selectedItemId);
 
@@ -128,7 +128,7 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 		.map((item) => {
 			return {
 				name: item.name,
-				value: item.id.toString(),
+				value: item.id,
 			};
 		});
 
