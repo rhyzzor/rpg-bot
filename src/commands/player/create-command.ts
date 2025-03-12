@@ -31,7 +31,7 @@ export const data = new SlashCommandBuilder()
 			})
 			.setRequired(true),
 	)
-	.addStringOption((option) =>
+	.addIntegerOption((option) =>
 		option
 			.setName("class")
 			.setDescription("Character Class")
@@ -47,7 +47,7 @@ export const data = new SlashCommandBuilder()
 
 export async function run({ interaction }: SlashCommandProps) {
 	const user = interaction.options.getUser("user", true);
-	const selectedClass = interaction.options.getString("class", true);
+	const selectedClass = interaction.options.getInteger("class", true);
 
 	const customId = interaction.id;
 
@@ -121,7 +121,7 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 		.map((item) => {
 			return {
 				name: item.name,
-				value: item.id.toString(),
+				value: item.id,
 			};
 		});
 
