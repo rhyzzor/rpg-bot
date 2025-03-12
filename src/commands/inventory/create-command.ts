@@ -1,4 +1,7 @@
+import type { ItemDTO, PlayerDTO } from "@/lib/database/schema";
+import { createInventoryUseCase } from "@/use-cases/create-inventory";
 import { listItemsUseCase } from "@/use-cases/list-items";
+import { listPlayersUseCase } from "@/use-cases/list-players";
 import type {
 	AutocompleteProps,
 	CommandOptions,
@@ -15,7 +18,7 @@ export const data = new SlashCommandBuilder()
 	.setDescriptionLocalizations({
 		"pt-BR": "Atualiza o ivnentário",
 	})
-	.addStringOption((option) =>
+	.addIntegerOption((option) =>
 		option
 			.setName("sheet")
 			.setDescription("Player/Extra Character Sheet")
@@ -26,7 +29,7 @@ export const data = new SlashCommandBuilder()
 			.setAutocomplete(true)
 			.setRequired(true),
 	)
-	.addStringOption((option) =>
+	.addIntegerOption((option) =>
 		option
 			.setName("item")
 			.setDescription("Item")
@@ -49,32 +52,48 @@ export const data = new SlashCommandBuilder()
 export async function run({ interaction }: SlashCommandProps) {
 	if (!interaction.guildId) return;
 
-	const user = interaction.options.getString("user", true);
-	const item = interaction.options.getString("item", true);
+	const guildId = interaction.guildId;
+
+	const playerId = interaction.options.getInteger("sheet", true);
+	const itemId = interaction.options.getInteger("item", true);
 	const quantity = interaction.options.getInteger("quantity", true);
+
+	await createInventoryUseCase({ guildId, itemId, playerId, quantity });
+
+	await interaction.reply({
+		content: "Inventário atualizado!",
+		flags: "Ephemeral",
+	});
+
+	return;
 }
 
 export async function autocomplete({ interaction }: AutocompleteProps) {
 	if (!interaction.guildId) return;
 
 	const focusedOption = interaction.options.getFocused(true);
-
 	const guildId = interaction.guildId;
 
-	const items = await listItemsUseCase({
-		guildId: guildId,
-	});
+	const useCaseMap: Record<
+		string,
+		(params: { guildId: string }) => Promise<ItemDTO[] | PlayerDTO[]>
+	> = {
+		sheet: listPlayersUseCase,
+		item: listItemsUseCase,
+	};
 
-	const result = items
+	const fetchData = useCaseMap[focusedOption.name];
+
+	const data = await fetchData({ guildId });
+
+	const result = data
 		.filter((item) =>
-			item.name.toLowerCase().startsWith(focusedOption.value.toLowerCase()),
+			item.name.toLowerCase().includes(focusedOption.value.toLowerCase()),
 		)
-		.map((item) => {
-			return {
-				name: item.name,
-				value: item.id.toString(),
-			};
-		});
+		.map((item) => ({
+			name: item.name,
+			value: item.id,
+		}));
 
 	await interaction.respond(result);
 }
