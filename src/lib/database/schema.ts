@@ -1,4 +1,4 @@
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 
 export const itemTable = sqliteTable("item", {
 	id: integer("id").primaryKey({ autoIncrement: true }),
@@ -45,14 +45,18 @@ export const playerTable = sqliteTable("player", {
 	stats: text("stats", { mode: "json" }).$type<StatsType[]>().notNull(),
 });
 
-export const inventoryTable = sqliteTable("inventory", {
-	id: integer("id").primaryKey({ autoIncrement: true }),
-	playerId: integer("player_id")
-		.references(() => playerTable.id)
-		.notNull(),
-	itemId: integer("item_id")
-		.references(() => itemTable.id)
-		.notNull(),
-	quantity: integer("quantity").notNull(),
-	guildId: text("guild_id").notNull(),
-});
+export const inventoryTable = sqliteTable(
+	"inventory",
+	{
+		id: integer("id").primaryKey({ autoIncrement: true }),
+		playerId: integer("player_id")
+			.references(() => playerTable.id)
+			.notNull(),
+		itemId: integer("item_id")
+			.references(() => itemTable.id)
+			.notNull(),
+		quantity: integer("quantity").notNull(),
+		guildId: text("guild_id").notNull(),
+	},
+	(t) => [unique().on(t.guildId, t.itemId, t.playerId)],
+);

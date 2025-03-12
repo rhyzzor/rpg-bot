@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `inventory_guild_id_item_id_player_id_unique` ON `inventory` (`guild_id`,`item_id`,`player_id`);
