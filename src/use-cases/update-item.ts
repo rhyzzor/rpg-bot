@@ -7,14 +7,14 @@ interface EditItemProps {
 	name: string;
 	description: string;
 	url: string;
-	guildExternalId: string;
+	guildId: string;
 }
 
 export async function updateItemUseCase({
 	id,
 	name,
 	description,
-	guildExternalId,
+	guildId,
 	url,
 }: EditItemProps) {
 	await db
@@ -24,5 +24,5 @@ export async function updateItemUseCase({
 			description,
 			url,
 		})
-		.where(and(eq(itemTable.id, id), eq(itemTable.guildId, guildExternalId)));
+		.where(and(eq(itemTable.id, id), eq(itemTable.guildId, guildId)));
 }

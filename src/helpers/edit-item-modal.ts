@@ -44,7 +44,7 @@ export async function showEditModal(
 		id,
 		name: itemName,
 		description: descriptionName,
-		guildExternalId: guildId,
+		guildId,
 		url: imageUrl,
 	});
 

@@ -117,7 +117,7 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 	const focusedOption = interaction.options.getFocused(true).value;
 
 	const items = await listItemsUseCase({
-		guildExternalId: interaction.guildId,
+		guildId: interaction.guildId,
 	});
 
 	const result = items

@@ -3,14 +3,14 @@ import { itemTable } from "@/lib/database/schema";
 import { asc, eq } from "drizzle-orm";
 
 interface ListItemProps {
-	guildExternalId: string;
+	guildId: string;
 }
 
-export async function listItemsUseCase({ guildExternalId }: ListItemProps) {
+export async function listItemsUseCase({ guildId }: ListItemProps) {
 	const items = await db
 		.select()
 		.from(itemTable)
-		.where(eq(itemTable.guildId, guildExternalId))
+		.where(eq(itemTable.guildId, guildId))
 		.orderBy(asc(itemTable.name));
 
 	return items;
