@@ -45,6 +45,8 @@ export const playerTable = sqliteTable("player", {
 	stats: text("stats", { mode: "json" }).$type<StatsType[]>().notNull(),
 });
 
+export type PlayerDTO = typeof playerTable.$inferSelect;
+
 export const inventoryTable = sqliteTable(
 	"inventory",
 	{
