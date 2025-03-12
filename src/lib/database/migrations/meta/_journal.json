@@ -50,6 +50,13 @@
       "when": 1741731442342,
       "tag": "0006_living_crusher_hogan",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1741778503204,
+      "tag": "0007_wandering_korath",
+      "breakpoints": true
     }
   ]
 }

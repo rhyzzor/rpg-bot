@@ -44,3 +44,15 @@ export const playerTable = sqliteTable("player", {
 	extraDetails: text("extra_details"),
 	stats: text("stats", { mode: "json" }).$type<StatsType[]>().notNull(),
 });
+
+export const inventoryTable = sqliteTable("inventory", {
+	id: integer("id").primaryKey({ autoIncrement: true }),
+	playerId: integer("player_id")
+		.references(() => playerTable.id)
+		.notNull(),
+	itemId: integer("item_id")
+		.references(() => itemTable.id)
+		.notNull(),
+	quantity: integer("quantity").notNull(),
+	guildId: text("guild_id").notNull(),
+});
