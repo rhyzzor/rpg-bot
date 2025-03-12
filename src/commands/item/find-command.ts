@@ -19,19 +19,20 @@ import {
 
 export const data = new SlashCommandBuilder()
 	.setName("item")
-	.setDescription("Comandos relacionados ao item")
-	.setNameLocalizations({
-		"pt-BR": "item",
-		"en-US": "item",
-	})
+	.setDescription("Commands related to item")
 	.setDescriptionLocalizations({
 		"pt-BR": "Comandos relacionados ao item",
-		"en-US": "Commands related to item",
 	})
 	.addStringOption((option) =>
 		option
 			.setName("name")
-			.setDescription("Digite o nome do item")
+			.setDescription("Item name")
+			.setNameLocalizations({
+				"pt-BR": "nome",
+			})
+			.setDescriptionLocalizations({
+				"pt-BR": "Nome do Item",
+			})
 			.setRequired(true)
 			.setAutocomplete(true),
 	);

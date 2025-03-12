@@ -4,15 +4,13 @@ import type { CommandOptions, SlashCommandProps } from "commandkit";
 import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
-	.setName("criar-item")
-	.setDescription("Cria um item")
+	.setName("create-item")
+	.setDescription("Create an item")
 	.setNameLocalizations({
 		"pt-BR": "criar-item",
-		"en-US": "create-item",
 	})
 	.setDescriptionLocalizations({
 		"pt-BR": "Cria um item",
-		"en-US": "Create an item",
 	});
 
 export async function run({ interaction }: SlashCommandProps) {

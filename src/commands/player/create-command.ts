@@ -9,26 +9,24 @@ import type {
 import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
-	.setName("criar-ficha")
-	.setDescription("Cria uma ficha")
+	.setName("create-sheet")
+	.setDescription("Create a sheet")
 	.setNameLocalizations({
 		"pt-BR": "criar-ficha",
-		"en-US": "create-sheet",
 	})
 	.setDescriptionLocalizations({
 		"pt-BR": "Cria uma ficha",
-		"en-US": "Create a sheet",
 	})
 	.addUserOption((option) =>
 		option
 			.setName("user")
 			.setNameLocalizations({
-				"pt-BR": "user",
+				"pt-BR": "usuário",
 				"en-US": "user",
 			})
 			.setDescription("Usuário")
 			.setDescriptionLocalizations({
-				"pt-BR": "Usuário",
+				"pt-BR": "Usuário do Discord",
 				"en-US": "User",
 			})
 			.setRequired(true),
@@ -37,6 +35,12 @@ export const data = new SlashCommandBuilder()
 		option
 			.setName("class")
 			.setDescription("Character Class")
+			.setNameLocalizations({
+				"pt-BR": "classe",
+			})
+			.setDescriptionLocalizations({
+				"pt-BR": "Classe do Personagem",
+			})
 			.setAutocomplete(true)
 			.setRequired(true),
 	);
