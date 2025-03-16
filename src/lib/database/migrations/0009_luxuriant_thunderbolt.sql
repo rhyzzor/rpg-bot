@@ -1,0 +1,1 @@
+ALTER TABLE `player` ADD `points` integer DEFAULT 0 NOT NULL;
