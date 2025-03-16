@@ -44,8 +44,13 @@
 		}
 	},
 	"player": {
+		"errors": {
+			"not-found": "Sheet not found. Ask the admin to create one!",
+			"not-enough-points": "You don't have enough points! You have only **{{points}}** points."
+		},
 		"points": {
-			"send": "Points sent successfully!"
+			"send": "Points sent successfully!",
+			"update": "Points updated successfully!"
 		},
 		"create": {
 			"title": "Create Sheet",

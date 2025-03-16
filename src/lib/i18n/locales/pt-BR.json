@@ -45,8 +45,13 @@
 		}
 	},
 	"player": {
+		"errors": {
+			"not-found": "Ficha não encontrada. Peça para o administrador criar uma!",
+			"not-enough-points": "Você não tem pontos suficientes! Você tem apenas **{{points}}** pontos."
+		},
 		"points": {
-			"send": "Pontos enviados com sucesso!"
+			"send": "Pontos enviados com sucesso!",
+			"update": "Pontos atualizados com sucesso!"
 		},
 		"create": {
 			"title": "Criar uma nova ficha",

@@ -14,7 +14,7 @@ export const itemTable = sqliteTable("item", {
 
 export type ItemDTO = typeof itemTable.$inferSelect;
 
-type StatsType = {
+export type StatsType = {
 	label: string;
 	value: number;
 };
