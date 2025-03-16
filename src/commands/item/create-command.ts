@@ -1,4 +1,5 @@
 import { generateItemModal } from "@/components/item/modal";
+import { translate } from "@/lib/i18n";
 import { createItemUseCase } from "@/use-cases/create-item";
 import type { CommandOptions, SlashCommandProps } from "commandkit";
 import { SlashCommandBuilder } from "discord.js";
@@ -16,7 +17,13 @@ export const data = new SlashCommandBuilder()
 export async function run({ interaction }: SlashCommandProps) {
 	const customId = interaction.id;
 
-	const modal = generateItemModal({ customId, title: "Criar um novo item" });
+	const locale = interaction.locale;
+
+	const modal = generateItemModal({
+		customId,
+		title: translate("item.create.title", locale),
+		locale,
+	});
 
 	await interaction.showModal(modal);
 
@@ -26,7 +33,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	});
 
 	if (!modalInteraction.guildId) {
-		return await modalInteraction.reply("Não foi possível criar o item");
+		return await modalInteraction.reply(translate("item.create.error", locale));
 	}
 
 	const getValue = (field: string) =>
@@ -44,7 +51,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	});
 
 	return await modalInteraction.reply({
-		content: `Item **${itemName}** criado com sucesso!`,
+		content: translate("item.create.success", locale),
 		flags: "Ephemeral",
 	});
 }

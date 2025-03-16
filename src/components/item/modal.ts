@@ -1,3 +1,4 @@
+import { translate } from "@/lib/i18n";
 import {
 	ActionRowBuilder,
 	type ModalActionRowComponentBuilder,
@@ -12,6 +13,7 @@ interface ModalProps {
 	url?: string;
 	customId: string;
 	title: string;
+	locale: string;
 }
 
 export function generateItemModal(options: ModalProps) {
@@ -22,25 +24,27 @@ export function generateItemModal(options: ModalProps) {
 	const itemNameInput = new TextInputBuilder()
 		.setCustomId("itemNameInput")
 		.setMaxLength(100)
-		.setLabel("Nome")
+		.setLabel(translate("item.input.name.label", options.locale))
 		.setRequired(true)
-		.setPlaceholder("Qual o nome do seu item?")
+		.setPlaceholder(translate("item.input.name.placeholder", options.locale))
 		.setValue(options?.name ?? "")
 		.setStyle(TextInputStyle.Short);
 
 	const itemDescriptionInput = new TextInputBuilder()
 		.setCustomId("itemDescriptionInput")
-		.setLabel("Descrição")
+		.setLabel(translate("item.input.description.label", options.locale))
 		.setMaxLength(500)
 		.setRequired(true)
 		.setValue(options?.description ?? "")
-		.setPlaceholder("Qual a descrição do seu item?")
+		.setPlaceholder(
+			translate("item.input.description.placeholder", options.locale),
+		)
 		.setStyle(TextInputStyle.Paragraph);
 
 	const itemUrlInput = new TextInputBuilder()
 		.setCustomId("itemUrlInput")
 		.setLabel("URL")
-		.setPlaceholder("Coloque a URL da imagem do seu item")
+		.setPlaceholder(translate("item.input.url.placeholder", options.locale))
 		.setRequired(true)
 		.setValue(options?.url ?? "")
 		.setStyle(TextInputStyle.Short);

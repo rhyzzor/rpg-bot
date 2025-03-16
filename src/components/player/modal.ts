@@ -1,3 +1,4 @@
+import { translate } from "@/lib/i18n";
 import {
 	ActionRowBuilder,
 	type ModalActionRowComponentBuilder,
@@ -11,6 +12,7 @@ interface ModalProps {
 	url?: string;
 	customId: string;
 	title: string;
+	locale: string;
 }
 
 export function generatePlayerModal(options: ModalProps) {
@@ -21,16 +23,16 @@ export function generatePlayerModal(options: ModalProps) {
 	const nameInput = new TextInputBuilder()
 		.setCustomId("playerNameInput")
 		.setMaxLength(100)
-		.setLabel("Nome")
+		.setLabel(translate("player.input.name.label", options.locale))
 		.setRequired(true)
-		.setPlaceholder("Qual o nome do personagem?")
+		.setPlaceholder(translate("player.input.name.placeholder", options.locale))
 		.setValue(options?.name ?? "")
 		.setStyle(TextInputStyle.Short);
 
 	const urlInput = new TextInputBuilder()
 		.setCustomId("playerUrlInput")
 		.setLabel("URL")
-		.setPlaceholder("Coloque a URL da imagem do personagem")
+		.setPlaceholder(translate("player.input.url.placeholder", options.locale))
 		.setRequired(true)
 		.setValue(options?.url ?? "")
 		.setStyle(TextInputStyle.Short);
@@ -38,16 +40,20 @@ export function generatePlayerModal(options: ModalProps) {
 	const backgroundInput = new TextInputBuilder()
 		.setCustomId("playerBackgroundInput")
 		.setMaxLength(1000)
-		.setLabel("Background")
-		.setPlaceholder("Descreva o background do personagem")
+		.setLabel(translate("player.input.background.label", options.locale))
+		.setPlaceholder(
+			translate("player.input.background.placeholder", options.locale),
+		)
 		.setStyle(TextInputStyle.Paragraph)
 		.setRequired(true);
 
 	const extraInput = new TextInputBuilder()
 		.setCustomId("playerExtraInput")
 		.setMaxLength(1000)
-		.setLabel("Detalhes Extra")
-		.setPlaceholder("Descreva os detalhes extras do personagem")
+		.setLabel(translate("player.input.extraDetails.label", options.locale))
+		.setPlaceholder(
+			translate("player.input.extraDetails.placeholder", options.locale),
+		)
 		.setRequired(false)
 		.setStyle(TextInputStyle.Paragraph);
 

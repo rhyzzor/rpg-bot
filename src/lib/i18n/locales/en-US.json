@@ -1,0 +1,70 @@
+{
+	"button": {
+		"label": {
+			"delete": "Delete",
+			"edit": "Edit"
+		}
+	},
+	"embed": {
+		"label": {
+			"description": "Description"
+		}
+	},
+	"item": {
+		"create": {
+			"title": "Create Item",
+			"error": "An error occurred while creating the item",
+			"success": "Item successfully created!"
+		},
+		"edit": {
+			"title": "Edit Item",
+			"error": "An error occurred while editing the item",
+			"success": "Item edited successfully!"
+		},
+		"delete": {
+			"success": "Item deleted successfully!"
+		},
+		"input": {
+			"name": {
+				"label": "Name",
+				"placeholder": "What is the name of your item?"
+			},
+			"description": {
+				"label": "Description",
+				"placeholder": "What is the description of your item?"
+			},
+			"url": {
+				"placeholder": "Enter the image URL of your item"
+			}
+		}
+	},
+	"inventory": {
+		"edit": {
+			"success": "Updated inventory successfully!"
+		}
+	},
+	"player": {
+		"create": {
+			"title": "Create Sheet",
+			"error": "An error occurred while creating the sheet",
+			"success": "Sheet successfully created!"
+		},
+		"input": {
+			"name": {
+				"label": "Name",
+				"placeholder": "What is the name of your character?"
+			},
+			"url": {
+				"placeholder": "Enter the image URL of your character"
+			},
+			"background": {
+				"label": "Background",
+				"placeholder": "Describe your character's background"
+			},
+			"extraDetails": {
+				"label": "Extra Details",
+				"placeholder": "Describe extra details about your character"
+			}
+		}
+	}
+}

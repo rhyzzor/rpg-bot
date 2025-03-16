@@ -1,0 +1,71 @@
+{
+	"button": {
+		"label": {
+			"delete": "Deletar",
+			"edit": "Editar"
+		}
+	},
+	"embed": {
+		"label": {
+			"description": "Descrição"
+		}
+	},
+	"item": {
+		"create": {
+			"title": "Criar Item",
+			"error": "Ocorreu um erro ao criar o item",
+			"success": "Item criado com sucesso!"
+		},
+		"edit": {
+			"title": "Editar Item",
+			"error": "Ocorreu um erro ao editar o item",
+			"success": "Item editado com sucesso!"
+		},
+		"delete": {
+			"success": "Item deletado com sucesso!"
+		},
+
+		"input": {
+			"name": {
+				"label": "Nome",
+				"placeholder": "Qual o nome do seu item?"
+			},
+			"description": {
+				"label": "Descrição",
+				"placeholder": "Qual a descrição do seu item?"
+			},
+			"url": {
+				"placeholder": "Coloque a URL da imagem do seu item"
+			}
+		}
+	},
+	"inventory": {
+		"edit": {
+			"success": "Inventario atualizado com sucesso!"
+		}
+	},
+	"player": {
+		"create": {
+			"title": "Criar uma nova ficha",
+			"error": "Ocorreu um erro ao criar a ficha",
+			"success": "Ficha criada com sucesso!"
+		},
+		"input": {
+			"name": {
+				"label": "Nome",
+				"placeholder": "Qual o nome do seu personagem?"
+			},
+			"url": {
+				"placeholder": "Coloque a URL da imagem do seu personagem"
+			},
+			"background": {
+				"label": "Background",
+				"placeholder": "Descreva o background do seu personagem"
+			},
+			"extraDetails": {
+				"label": "Detalhes extras",
+				"placeholder": "Descreva detalhes extras do seu personagem"
+			}
+		}
+	}
+}

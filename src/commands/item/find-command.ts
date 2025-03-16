@@ -1,5 +1,6 @@
 import { deleteItem } from "@/helpers/delete-item";
 import { showEditModal } from "@/helpers/edit-item-modal";
+import { translate } from "@/lib/i18n";
 import { findItemUseCase } from "@/use-cases/find-item";
 import { listItemsUseCase } from "@/use-cases/list-items";
 import type {
@@ -43,12 +44,13 @@ export async function run({ interaction }: SlashCommandProps) {
 	}
 
 	const selectedItemId = interaction.options.getInteger("name", true);
+	const locale = interaction.locale;
 
 	const item = await findItemUseCase(selectedItemId);
 
 	const options = [
 		{
-			name: "Editar",
+			name: translate("button.label.edit", locale),
 			emoji: "📝",
 			style: ButtonStyle.Secondary,
 			execute: async (interaction: ButtonInteraction<CacheType>) => {
@@ -56,7 +58,7 @@ export async function run({ interaction }: SlashCommandProps) {
 			},
 		},
 		{
-			name: "Deletar",
+			name: translate("button.label.delete", locale),
 			emoji: "🗑️",
 			style: ButtonStyle.Danger,
 			execute: async (_: unknown) => {
@@ -77,7 +79,7 @@ export async function run({ interaction }: SlashCommandProps) {
 		.setTitle(item.name)
 		.setThumbnail(item.url)
 		.setFields({
-			name: "Descrição",
+			name: translate("embed.label.description", locale),
 			value: item.description,
 		});
 

@@ -1,4 +1,5 @@
 import type { ItemDTO } from "@/lib/database/schema";
+import { translate } from "@/lib/i18n";
 import { deleteItemUseCase } from "@/use-cases/delete-item";
 import type { CacheType, ChatInputCommandInteraction } from "discord.js";
 
@@ -16,7 +17,7 @@ export async function deleteItem(
 	});
 
 	await interaction.editReply({
-		content: "Item deletado com sucesso",
+		content: translate("item.delete.success", interaction.locale),
 		flags: "SuppressEmbeds",
 		components: [],
 	});

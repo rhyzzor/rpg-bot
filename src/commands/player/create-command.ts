@@ -1,4 +1,5 @@
 import { generatePlayerModal } from "@/components/player/modal";
+import { translate } from "@/lib/i18n";
 import { createPlayerUseCase } from "@/use-cases/create-player";
 import { listClassesUseCase } from "@/use-cases/list-classes";
 import type {
@@ -51,9 +52,12 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	const customId = interaction.id;
 
+	const locale = interaction.locale;
+
 	const modal = generatePlayerModal({
 		customId,
-		title: "Criar uma nova ficha",
+		title: translate("player.create.title", locale),
+		locale,
 	});
 
 	await interaction.showModal(modal);
@@ -64,15 +68,16 @@ export async function run({ interaction }: SlashCommandProps) {
 	});
 
 	if (!modalInteraction) {
-		await interaction.reply({
-			content: "Não foi possível criar a ficha",
+		return await interaction.reply({
+			content: translate("player.create.error", locale),
 			flags: "Ephemeral",
 		});
-		return;
 	}
 
 	if (!modalInteraction.guildId) {
-		return await modalInteraction.reply("Não foi possível criar a ficha");
+		return await modalInteraction.reply(
+			translate("player.create.error", locale),
+		);
 	}
 
 	const getValue = (field: string) =>
@@ -94,7 +99,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	});
 
 	await modalInteraction.reply({
-		content: "Ficha criada com sucesso",
+		content: translate("player.create.success", locale),
 		flags: "Ephemeral",
 	});
 

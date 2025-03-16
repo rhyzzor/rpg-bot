@@ -1,5 +1,6 @@
 import { generateItemModal } from "@/components/item/modal";
 import type { ItemDTO } from "@/lib/database/schema";
+import { translate } from "@/lib/i18n";
 import { updateItemUseCase } from "@/use-cases/update-item";
 import type { ButtonInteraction, CacheType } from "discord.js";
 
@@ -9,12 +10,15 @@ export async function showEditModal(
 ) {
 	if (!interaction.guildId) return;
 
+	const locale = interaction.locale;
+
 	const customId = `modal#${interaction.id}`;
 
 	const modal = generateItemModal({
 		...item,
-		title: "Editar item",
+		title: translate("item.edit.title", locale),
 		customId,
+		locale,
 	});
 
 	await interaction.showModal(modal);
@@ -27,7 +31,7 @@ export async function showEditModal(
 	const guildId = modalInteraction.guildId;
 
 	if (!guildId) {
-		await modalInteraction.reply("Não foi possível editar o item");
+		await modalInteraction.reply(translate("item.edit.error", locale));
 		return;
 	}
 
@@ -49,7 +53,7 @@ export async function showEditModal(
 	});
 
 	await modalInteraction.reply({
-		content: "Item editado com sucesso",
+		content: translate("item.edit.success", locale),
 		flags: "Ephemeral",
 	});
 
