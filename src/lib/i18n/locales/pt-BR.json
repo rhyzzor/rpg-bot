@@ -45,6 +45,9 @@
 		}
 	},
 	"player": {
+		"points": {
+			"send": "Pontos enviados com sucesso!"
+		},
 		"create": {
 			"title": "Criar uma nova ficha",
 			"error": "Ocorreu um erro ao criar a ficha",
@@ -67,5 +70,13 @@
 				"placeholder": "Descreva detalhes extras do seu personagem"
 			}
 		}
+	},
+	"attribute": {
+		"strength": "Força",
+		"dexterity": "Destreza",
+		"constitution": "Constituição",
+		"intelligence": "Inteligência",
+		"wisdom": "Sabedoria",
+		"charisma": "Carisma"
 	}
 }

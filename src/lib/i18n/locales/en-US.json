@@ -44,6 +44,9 @@
 		}
 	},
 	"player": {
+		"points": {
+			"send": "Points sent successfully!"
+		},
 		"create": {
 			"title": "Create Sheet",
 			"error": "An error occurred while creating the sheet",
@@ -66,5 +69,13 @@
 				"placeholder": "Describe extra details about your character"
 			}
 		}
+	},
+	"attribute": {
+		"strength": "Strength",
+		"dexterity": "Dexterity",
+		"constitution": "Constitution",
+		"intelligence": "Intelligence",
+		"wisdom": "Wisdom",
+		"charisma": "Charisma"
 	}
 }
