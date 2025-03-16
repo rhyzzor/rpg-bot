@@ -24,27 +24,33 @@ export function generateItemModal(options: ModalProps) {
 	const itemNameInput = new TextInputBuilder()
 		.setCustomId("itemNameInput")
 		.setMaxLength(100)
-		.setLabel(translate("item.input.name.label", options.locale))
+		.setLabel(translate("item.input.name.label", { lng: options.locale }))
 		.setRequired(true)
-		.setPlaceholder(translate("item.input.name.placeholder", options.locale))
+		.setPlaceholder(
+			translate("item.input.name.placeholder", { lng: options.locale }),
+		)
 		.setValue(options?.name ?? "")
 		.setStyle(TextInputStyle.Short);
 
 	const itemDescriptionInput = new TextInputBuilder()
 		.setCustomId("itemDescriptionInput")
-		.setLabel(translate("item.input.description.label", options.locale))
+		.setLabel(
+			translate("item.input.description.label", { lng: options.locale }),
+		)
 		.setMaxLength(500)
 		.setRequired(true)
 		.setValue(options?.description ?? "")
 		.setPlaceholder(
-			translate("item.input.description.placeholder", options.locale),
+			translate("item.input.description.placeholder", { lng: options.locale }),
 		)
 		.setStyle(TextInputStyle.Paragraph);
 
 	const itemUrlInput = new TextInputBuilder()
 		.setCustomId("itemUrlInput")
 		.setLabel("URL")
-		.setPlaceholder(translate("item.input.url.placeholder", options.locale))
+		.setPlaceholder(
+			translate("item.input.url.placeholder", { lng: options.locale }),
+		)
 		.setRequired(true)
 		.setValue(options?.url ?? "")
 		.setStyle(TextInputStyle.Short);

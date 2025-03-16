@@ -44,13 +44,13 @@ export async function run({ interaction }: SlashCommandProps) {
 	}
 
 	const selectedItemId = interaction.options.getInteger("name", true);
-	const locale = interaction.locale;
+	const lng = interaction.locale;
 
 	const item = await findItemUseCase(selectedItemId);
 
 	const options = [
 		{
-			name: translate("button.label.edit", locale),
+			name: translate("button.label.edit", { lng }),
 			emoji: "📝",
 			style: ButtonStyle.Secondary,
 			execute: async (interaction: ButtonInteraction<CacheType>) => {
@@ -58,7 +58,7 @@ export async function run({ interaction }: SlashCommandProps) {
 			},
 		},
 		{
-			name: translate("button.label.delete", locale),
+			name: translate("button.label.delete", { lng }),
 			emoji: "🗑️",
 			style: ButtonStyle.Danger,
 			execute: async (_: unknown) => {
@@ -79,7 +79,7 @@ export async function run({ interaction }: SlashCommandProps) {
 		.setTitle(item.name)
 		.setThumbnail(item.url)
 		.setFields({
-			name: translate("embed.label.description", locale),
+			name: translate("embed.label.description", { lng }),
 			value: item.description,
 		});
 

@@ -23,16 +23,20 @@ export function generatePlayerModal(options: ModalProps) {
 	const nameInput = new TextInputBuilder()
 		.setCustomId("playerNameInput")
 		.setMaxLength(100)
-		.setLabel(translate("player.input.name.label", options.locale))
+		.setLabel(translate("player.input.name.label", { lng: options.locale }))
 		.setRequired(true)
-		.setPlaceholder(translate("player.input.name.placeholder", options.locale))
+		.setPlaceholder(
+			translate("player.input.name.placeholder", { lng: options.locale }),
+		)
 		.setValue(options?.name ?? "")
 		.setStyle(TextInputStyle.Short);
 
 	const urlInput = new TextInputBuilder()
 		.setCustomId("playerUrlInput")
 		.setLabel("URL")
-		.setPlaceholder(translate("player.input.url.placeholder", options.locale))
+		.setPlaceholder(
+			translate("player.input.url.placeholder", { lng: options.locale }),
+		)
 		.setRequired(true)
 		.setValue(options?.url ?? "")
 		.setStyle(TextInputStyle.Short);
@@ -40,9 +44,11 @@ export function generatePlayerModal(options: ModalProps) {
 	const backgroundInput = new TextInputBuilder()
 		.setCustomId("playerBackgroundInput")
 		.setMaxLength(1000)
-		.setLabel(translate("player.input.background.label", options.locale))
+		.setLabel(
+			translate("player.input.background.label", { lng: options.locale }),
+		)
 		.setPlaceholder(
-			translate("player.input.background.placeholder", options.locale),
+			translate("player.input.background.placeholder", { lng: options.locale }),
 		)
 		.setStyle(TextInputStyle.Paragraph)
 		.setRequired(true);
@@ -50,9 +56,13 @@ export function generatePlayerModal(options: ModalProps) {
 	const extraInput = new TextInputBuilder()
 		.setCustomId("playerExtraInput")
 		.setMaxLength(1000)
-		.setLabel(translate("player.input.extraDetails.label", options.locale))
+		.setLabel(
+			translate("player.input.extraDetails.label", { lng: options.locale }),
+		)
 		.setPlaceholder(
-			translate("player.input.extraDetails.placeholder", options.locale),
+			translate("player.input.extraDetails.placeholder", {
+				lng: options.locale,
+			}),
 		)
 		.setRequired(false)
 		.setStyle(TextInputStyle.Paragraph);

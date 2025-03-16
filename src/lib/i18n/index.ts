@@ -16,6 +16,11 @@ i18next
 	.then(() => console.log("i18n ready"))
 	.catch((err) => console.error(err));
 
-export function translate(field: string, locale = "en-US") {
-	return i18next.t(field, { lng: locale });
+type TranslateOptions = {
+	lng: string;
+	[key: string]: unknown;
+};
+
+export function translate(field: string, options: TranslateOptions) {
+	return i18next.t(field, options);
 }

@@ -44,7 +44,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	await sendPointUseCase({ guildId, playerId, quantity });
 
 	return await interaction.reply({
-		content: translate("player.points.send", interaction.locale),
+		content: translate("player.points.send", { lng: interaction.locale }),
 		flags: "Ephemeral",
 	});
 }

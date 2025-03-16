@@ -17,12 +17,12 @@ export const data = new SlashCommandBuilder()
 export async function run({ interaction }: SlashCommandProps) {
 	const customId = interaction.id;
 
-	const locale = interaction.locale;
+	const lng = interaction.locale;
 
 	const modal = generateItemModal({
 		customId,
-		title: translate("item.create.title", locale),
-		locale,
+		title: translate("item.create.title", { lng }),
+		locale: lng,
 	});
 
 	await interaction.showModal(modal);
@@ -33,7 +33,9 @@ export async function run({ interaction }: SlashCommandProps) {
 	});
 
 	if (!modalInteraction.guildId) {
-		return await modalInteraction.reply(translate("item.create.error", locale));
+		return await modalInteraction.reply(
+			translate("item.create.error", { lng }),
+		);
 	}
 
 	const getValue = (field: string) =>
@@ -51,7 +53,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	});
 
 	return await modalInteraction.reply({
-		content: translate("item.create.success", locale),
+		content: translate("item.create.success", { lng }),
 		flags: "Ephemeral",
 	});
 }

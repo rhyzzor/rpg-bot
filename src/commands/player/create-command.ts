@@ -52,12 +52,12 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	const customId = interaction.id;
 
-	const locale = interaction.locale;
+	const lng = interaction.locale;
 
 	const modal = generatePlayerModal({
 		customId,
-		title: translate("player.create.title", locale),
-		locale,
+		title: translate("player.create.title", { lng }),
+		locale: lng,
 	});
 
 	await interaction.showModal(modal);
@@ -69,14 +69,14 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	if (!modalInteraction) {
 		return await interaction.reply({
-			content: translate("player.create.error", locale),
+			content: translate("player.create.error", { lng }),
 			flags: "Ephemeral",
 		});
 	}
 
 	if (!modalInteraction.guildId) {
 		return await modalInteraction.reply(
-			translate("player.create.error", locale),
+			translate("player.create.error", { lng }),
 		);
 	}
 
@@ -99,7 +99,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	});
 
 	await modalInteraction.reply({
-		content: translate("player.create.success", locale),
+		content: translate("player.create.success", { lng }),
 		flags: "Ephemeral",
 	});
 
