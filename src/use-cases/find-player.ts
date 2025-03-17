@@ -1,5 +1,5 @@
 import { db } from "@/lib/database/drizzle";
-import { playerTable } from "@/lib/database/schema";
+import { inventoryTable, itemTable, playerTable } from "@/lib/database/schema";
 import { and, eq } from "drizzle-orm";
 
 interface FindPlayerProps {
@@ -25,5 +25,18 @@ export async function findPlayerUseCase({
 		)
 		.get();
 
-	return player;
+	if (!player) return;
+
+	const inventory = await db
+		.select({
+			id: inventoryTable.id,
+			itemName: itemTable.name,
+			itemId: inventoryTable.itemId,
+			quantity: inventoryTable.quantity,
+		})
+		.from(inventoryTable)
+		.innerJoin(itemTable, eq(inventoryTable.itemId, itemTable.id))
+		.where(eq(inventoryTable.playerId, player.id));
+
+	return { ...player, inventory };
 }
