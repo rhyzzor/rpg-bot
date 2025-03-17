@@ -50,7 +50,8 @@
 		},
 		"points": {
 			"send": "Points sent successfully!",
-			"update": "Points updated successfully!"
+			"update": "Points updated successfully!",
+			"set": "Points set successfully!"
 		},
 		"create": {
 			"title": "Create Sheet",
