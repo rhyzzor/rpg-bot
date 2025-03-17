@@ -40,6 +40,7 @@
 		}
 	},
 	"inventory": {
+		"label": "Inventário",
 		"edit": {
 			"success": "Inventario atualizado com sucesso!"
 		}
@@ -50,6 +51,7 @@
 			"not-enough-points": "Você não tem pontos suficientes! Você tem apenas **{{points}}** pontos."
 		},
 		"points": {
+			"label": "Pontos sobrando",
 			"send": "Pontos enviados com sucesso!",
 			"update": "Pontos atualizados com sucesso!"
 		},
@@ -77,6 +79,7 @@
 		}
 	},
 	"attribute": {
+		"label": "Atributos",
 		"strength": "Força",
 		"dexterity": "Destreza",
 		"constitution": "Constituição",
