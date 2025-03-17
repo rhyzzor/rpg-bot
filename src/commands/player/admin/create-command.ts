@@ -135,4 +135,5 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 
 export const options: CommandOptions = {
 	devOnly: true,
+	userPermissions: ["Administrator"],
 };
