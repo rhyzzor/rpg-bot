@@ -8,7 +8,7 @@ interface UpdatePlayerStatsProps {
 	stats: StatsType[];
 	points: number;
 }
-export async function UpdatePlayerStatsUseCase({
+export async function updatePlayerStatsUseCase({
 	playerId,
 	guildId,
 	stats,

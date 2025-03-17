@@ -1,6 +1,6 @@
 import { translate } from "@/lib/i18n";
 import { findPlayerUseCase } from "@/use-cases/find-player";
-import { UpdatePlayerStatsUseCase } from "@/use-cases/update-player-stats";
+import { updatePlayerStatsUseCase } from "@/use-cases/update-player-stats";
 import type {
 	AutocompleteProps,
 	CommandOptions,
@@ -51,7 +51,10 @@ export async function run({ interaction }: SlashCommandProps) {
 	const attribute = interaction.options.getString("attribute", true);
 	const quantity = interaction.options.getInteger("quantity", true);
 
-	const sheet = await findPlayerUseCase({ externalId: interaction.user.id });
+	const sheet = await findPlayerUseCase({
+		externalId: interaction.user.id,
+		guildId: interaction.guildId,
+	});
 
 	if (!sheet) {
 		return await interaction.reply({
@@ -81,7 +84,7 @@ export async function run({ interaction }: SlashCommandProps) {
 		return stat;
 	});
 
-	await UpdatePlayerStatsUseCase({
+	await updatePlayerStatsUseCase({
 		playerId: sheet.id,
 		guildId: interaction.guildId,
 		stats: newStats,
