@@ -12,9 +12,10 @@ export async function sendPrivateMessage(
 
 	const invite = await interaction.guild.invites.create(channelId, {
 		maxUses: 1,
+		maxAge: 90,
 	});
 
-	const text = `${translate(messagePath, { lng: interaction.locale })}\n${invite.url}`;
+	const text = `${translate(messagePath, { lng: interaction.locale, server: interaction.guild.name })}\n${invite.url}`;
 
 	await user.send(text);
 
