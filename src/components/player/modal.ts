@@ -10,6 +10,8 @@ import {
 interface ModalProps {
 	name?: string;
 	url?: string;
+	background?: string;
+	extraDetails?: string | null;
 	customId: string;
 	title: string;
 	locale: string;
@@ -50,6 +52,7 @@ export function generatePlayerModal(options: ModalProps) {
 		.setPlaceholder(
 			translate("player.input.background.placeholder", { lng: options.locale }),
 		)
+		.setValue(options?.background ?? "")
 		.setStyle(TextInputStyle.Paragraph)
 		.setRequired(true);
 
@@ -59,6 +62,7 @@ export function generatePlayerModal(options: ModalProps) {
 		.setLabel(
 			translate("player.input.extraDetails.label", { lng: options.locale }),
 		)
+		.setValue(options?.extraDetails ?? "")
 		.setPlaceholder(
 			translate("player.input.extraDetails.placeholder", {
 				lng: options.locale,

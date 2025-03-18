@@ -1,8 +1,9 @@
 import { generatePlayerModal } from "@/components/player/modal";
 import { sendPrivateMessage } from "@/helpers/send-private-message";
 import { translate } from "@/lib/i18n";
-import { createPlayerUseCase } from "@/use-cases/create-player";
-import { listClassesUseCase } from "@/use-cases/list-classes";
+import { findPlayerUseCase } from "@/use-cases/find-player";
+import { listPlayersUseCase } from "@/use-cases/list-players";
+import { updatePlayerUseCase } from "@/use-cases/update-player";
 import type {
 	AutocompleteProps,
 	CommandOptions,
@@ -11,37 +12,23 @@ import type {
 import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
-	.setName("create-sheet")
-	.setDescription("Create a sheet")
+	.setName("edit-sheet")
+	.setDescription("Edit a sheet")
 	.setNameLocalizations({
-		"pt-BR": "criar-ficha",
+		"pt-BR": "editar-ficha",
 	})
 	.setDescriptionLocalizations({
-		"pt-BR": "Cria uma ficha",
+		"pt-BR": "Edita uma ficha",
 	})
-	.addUserOption((option) =>
-		option
-			.setName("user")
-			.setNameLocalizations({
-				"pt-BR": "usuário",
-				"en-US": "user",
-			})
-			.setDescription("Usuário")
-			.setDescriptionLocalizations({
-				"pt-BR": "Usuário do Discord",
-				"en-US": "User",
-			})
-			.setRequired(true),
-	)
 	.addIntegerOption((option) =>
 		option
-			.setName("class")
-			.setDescription("Character Class")
+			.setName("sheet")
 			.setNameLocalizations({
-				"pt-BR": "classe",
+				"pt-BR": "ficha",
 			})
+			.setDescription("Player/Extra Character Sheet")
 			.setDescriptionLocalizations({
-				"pt-BR": "Classe do Personagem",
+				"pt-BR": "Ficha do Jogador/Personagem Extra",
 			})
 			.setAutocomplete(true)
 			.setRequired(true),
@@ -50,16 +37,31 @@ export const data = new SlashCommandBuilder()
 export async function run({ interaction }: SlashCommandProps) {
 	if (!interaction.guildId || !interaction.guild) return;
 
-	const user = interaction.options.getUser("user");
-	const selectedClass = interaction.options.getInteger("class", true);
+	const playerId = interaction.options.getInteger("sheet", true);
 
 	const customId = interaction.id;
 
 	const lng = interaction.locale;
 
+	const player = await findPlayerUseCase({
+		guildId: interaction.guildId,
+		id: playerId,
+	});
+
+	if (!player) {
+		return await interaction.reply({
+			content: translate("player.errors.not-found", { lng }),
+			flags: "Ephemeral",
+		});
+	}
+
 	const modal = generatePlayerModal({
+		name: player.name,
+		url: player.url,
+		background: player.background,
+		extraDetails: player.extraDetails,
 		customId,
-		title: translate("player.create.title", { lng }),
+		title: translate("player.edit.title", { lng }),
 		locale: lng,
 	});
 
@@ -72,7 +74,7 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	if (!modalInteraction || !modalInteraction.guildId) {
 		return await interaction.reply({
-			content: translate("player.create.error", { lng }),
+			content: translate("player.edit.error", { lng }),
 			flags: "Ephemeral",
 		});
 	}
@@ -85,24 +87,27 @@ export async function run({ interaction }: SlashCommandProps) {
 	const background = getValue("playerBackgroundInput");
 	const extraDetails = getValue("playerExtraInput");
 
-	await createPlayerUseCase({
+	const editedPlayer = await updatePlayerUseCase({
 		background,
-		classId: Number(selectedClass),
-		extraDetails,
-		guildId: modalInteraction.guildId,
+		guildId: interaction.guildId,
+		id: playerId,
 		name,
 		url,
-		externalId: user?.id,
+		extraDetails,
 	});
+
+	if (editedPlayer?.externalId) {
+		const user = await interaction.guild.members.fetch(editedPlayer.externalId);
+
+		if (user) {
+			await sendPrivateMessage(user, interaction, "invite.sheet.edit");
+		}
+	}
 
 	await modalInteraction.reply({
-		content: translate("player.create.success", { lng }),
+		content: translate("player.edit.success", { lng }),
 		flags: "Ephemeral",
 	});
-
-	if (user?.id) {
-		await sendPrivateMessage(user, interaction, "invite.sheet.create");
-	}
 
 	return;
 }
@@ -116,11 +121,11 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 
 	const focusedOption = interaction.options.getFocused(true).value;
 
-	const classes = await listClassesUseCase({
+	const sheets = await listPlayersUseCase({
 		guildId,
 	});
 
-	const result = classes
+	const result = sheets
 		.filter((item) =>
 			item.name.toLowerCase().startsWith(focusedOption.toLowerCase()),
 		)

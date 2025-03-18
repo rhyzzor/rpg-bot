@@ -55,6 +55,11 @@
 			"send": "Pontos enviados com sucesso!",
 			"update": "Pontos atualizados com sucesso!"
 		},
+		"edit": {
+			"title": "Editar uma ficha",
+			"error": "Ocorreu um erro ao editar a ficha",
+			"success": "Ficha editada com sucesso!"
+		},
 		"create": {
 			"title": "Criar uma nova ficha",
 			"error": "Ocorreu um erro ao criar a ficha",
@@ -90,6 +95,7 @@
 	"invite": {
 		"sheet": {
 			"create": "Uma ficha foi criada para você! Consulte no servidor com o comando **/ficha** nomeDoPersonagem",
+			"edit": "Sua ficha foi atualizada! Consulte no servidor com o comando **/ficha** nomeDoPersonagem",
 			"points": "Pontos foram adicionados na sua ficha! Consulte no servidor com o comando **/ficha** nomeDoPersonagem"
 		}
 	}

@@ -55,6 +55,11 @@
 			"update": "Points updated successfully!",
 			"set": "Points set successfully!"
 		},
+		"edit": {
+			"title": "Edit Sheet",
+			"error": "An error occurred while editing the sheet",
+			"success": "Sheet edited successfully!"
+		},
 		"create": {
 			"title": "Create Sheet",
 			"error": "An error occurred while creating the sheet",
@@ -90,6 +95,7 @@
 	"invite": {
 		"sheet": {
 			"create": "A sheet has been created for you! Check it on the server with the command **/sheet** characterName",
+			"edit": "Your sheet has been updated! Check it on the server with the command **/sheet** characterName",
 			"points": "Points have been added to your character sheet! Check it on the server with the command **/sheet** characterName"
 		}
 	}
