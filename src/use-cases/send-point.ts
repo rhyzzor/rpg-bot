@@ -13,10 +13,14 @@ export async function sendPointUseCase({
 	playerId,
 	quantity,
 }: SendPointProps) {
-	await db
+	const player = await db
 		.update(playerTable)
 		.set({
 			points: sql`${playerTable.points} + ${quantity}`,
 		})
-		.where(and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)));
+		.where(and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)))
+		.returning()
+		.get();
+
+	return player;
 }

@@ -1,3 +1,4 @@
+import { sendPrivateMessage } from "@/helpers/send-private-message";
 import { translate } from "@/lib/i18n";
 import { listPlayersUseCase } from "@/use-cases/list-players";
 import { sendPointUseCase } from "@/use-cases/send-point";
@@ -41,7 +42,17 @@ export async function run({ interaction }: SlashCommandProps) {
 	const playerId = interaction.options.getInteger("sheet", true);
 	const quantity = interaction.options.getInteger("quantity", true);
 
-	await sendPointUseCase({ guildId, playerId, quantity });
+	const sheet = await sendPointUseCase({ guildId, playerId, quantity });
+
+	if (sheet.externalId) {
+		const member = await interaction.guild?.members.fetch({
+			user: sheet.externalId,
+		});
+
+		if (member) {
+			await sendPrivateMessage(member, interaction, "invite.player.points");
+		}
+	}
 
 	return await interaction.reply({
 		content: translate("player.points.send", { lng: interaction.locale }),

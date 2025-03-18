@@ -1,8 +1,8 @@
 import { translate } from "@/lib/i18n";
-import type { Interaction, User } from "discord.js";
+import type { GuildMember, Interaction, User } from "discord.js";
 
 export async function sendPrivateMessage(
-	user: User,
+	user: User | GuildMember,
 	interaction: Interaction,
 	messagePath: string,
 ) {

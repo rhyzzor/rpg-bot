@@ -89,7 +89,8 @@
 	},
 	"invite": {
 		"sheet": {
-			"create": "Uma ficha foi criada para você! Consulte no servidor com o comando **/ficha** nomeDoPersonagem"
+			"create": "Uma ficha foi criada para você! Consulte no servidor com o comando **/ficha** nomeDoPersonagem",
+			"points": "Pontos foram adicionados na sua ficha! Consulte no servidor com o comando **/ficha** nomeDoPersonagem"
 		}
 	}
 }
