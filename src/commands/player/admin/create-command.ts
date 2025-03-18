@@ -1,5 +1,5 @@
 import { generatePlayerModal } from "@/components/player/modal";
-import { sendPrivateMessage } from "@/helpers/send-message";
+import { sendPrivateMessage } from "@/helpers/send-private-message";
 import { translate } from "@/lib/i18n";
 import { createPlayerUseCase } from "@/use-cases/create-player";
 import { listClassesUseCase } from "@/use-cases/list-classes";
