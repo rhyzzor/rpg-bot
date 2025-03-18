@@ -1,4 +1,5 @@
 import { generatePlayerModal } from "@/components/player/modal";
+import { sendPrivateMessage } from "@/helpers/send-message";
 import { translate } from "@/lib/i18n";
 import { createPlayerUseCase } from "@/use-cases/create-player";
 import { listClassesUseCase } from "@/use-cases/list-classes";
@@ -47,7 +48,9 @@ export const data = new SlashCommandBuilder()
 	);
 
 export async function run({ interaction }: SlashCommandProps) {
-	const user = interaction.options.getUser("user", true);
+	if (!interaction.guildId || !interaction.guild) return;
+
+	const user = interaction.options.getUser("user");
 	const selectedClass = interaction.options.getInteger("class", true);
 
 	const customId = interaction.id;
@@ -95,13 +98,17 @@ export async function run({ interaction }: SlashCommandProps) {
 		guildId: modalInteraction.guildId,
 		name,
 		url,
-		externalId: user.id,
+		externalId: user?.id,
 	});
 
 	await modalInteraction.reply({
 		content: translate("player.create.success", { lng }),
 		flags: "Ephemeral",
 	});
+
+	if (user?.id) {
+		await sendPrivateMessage(user, interaction, "invite.player.create");
+	}
 
 	return;
 }

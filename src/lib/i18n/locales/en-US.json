@@ -86,5 +86,10 @@
 		"intelligence": "Intelligence",
 		"wisdom": "Wisdom",
 		"charisma": "Charisma"
+	},
+	"invite": {
+		"player": {
+			"create": "A sheet has been created for you! Check it on the server with the command **/sheet** characterName"
+		}
 	}
 }

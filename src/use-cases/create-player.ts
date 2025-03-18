@@ -5,7 +5,7 @@ import { ResourceNotFoundError } from "./errors/resource-not-found-error";
 
 interface CreatePlayerProps {
 	guildId: string;
-	externalId: string;
+	externalId?: string;
 	name: string;
 	background: string;
 	url: string;
