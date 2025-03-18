@@ -50,7 +50,7 @@ export async function run({ interaction }: SlashCommandProps) {
 		});
 
 		if (member) {
-			await sendPrivateMessage(member, interaction, "invite.player.points");
+			await sendPrivateMessage(member, interaction, "invite.sheet.points");
 		}
 	}
 

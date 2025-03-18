@@ -107,7 +107,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	});
 
 	if (user?.id) {
-		await sendPrivateMessage(user, interaction, "invite.player.create");
+		await sendPrivateMessage(user, interaction, "invite.sheet.create");
 	}
 
 	return;

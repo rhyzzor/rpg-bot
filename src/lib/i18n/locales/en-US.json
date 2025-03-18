@@ -88,7 +88,7 @@
 		"charisma": "Charisma"
 	},
 	"invite": {
-		"player": {
+		"sheet": {
 			"create": "A sheet has been created for you! Check it on the server with the command **/sheet** characterName",
 			"points": "Points have been added to your character sheet! Check it on the server with the command **/sheet** characterName"
 		}
