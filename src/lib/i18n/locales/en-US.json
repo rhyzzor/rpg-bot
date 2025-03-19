@@ -99,5 +99,10 @@
 			"points": "Points have been added to your character sheet! Check it on the server **{{server}}**  with the command **/sheet** characterName",
 			"inventory": "Your inventory has been updated! Check it on the server **{{server}}** with the command **/sheet** characterName"
 		}
+	},
+	"class": {
+		"errors": {
+			"not-found": "Class not found. Contact the bot support"
+		}
 	}
 }

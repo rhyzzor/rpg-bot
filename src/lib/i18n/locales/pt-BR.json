@@ -99,5 +99,10 @@
 			"points": "Pontos foram adicionados na sua ficha! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
 			"inventory": "Seu inventário foi atualizado! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem"
 		}
+	},
+	"class": {
+		"errors": {
+			"not-found": "Classe não encontrada. Contate o suporte do Bot"
+		}
 	}
 }
