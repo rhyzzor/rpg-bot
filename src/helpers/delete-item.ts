@@ -17,7 +17,7 @@ export async function deleteItem(
 	});
 
 	await interaction.editReply({
-		content: translate("item.delete.success", interaction.locale),
+		content: translate("item.delete.success", { lng: interaction.locale }),
 		flags: "SuppressEmbeds",
 		components: [],
 	});
