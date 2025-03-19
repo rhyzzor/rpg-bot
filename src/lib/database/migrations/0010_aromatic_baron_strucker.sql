@@ -1,0 +1,1 @@
+ALTER TABLE `class` ADD `guild_id` text;

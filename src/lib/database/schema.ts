@@ -21,6 +21,7 @@ export type StatsType = {
 
 export const classTable = sqliteTable("class", {
 	id: integer("id").primaryKey({ autoIncrement: true }),
+	guildId: text("guild_id").notNull(),
 	name: text("name").notNull(),
 	description: text("description").notNull(),
 	url: text("url")

@@ -71,6 +71,20 @@
       "when": 1742157611507,
       "tag": "0009_luxuriant_thunderbolt",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1742389097704,
+      "tag": "0010_aromatic_baron_strucker",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1742389236316,
+      "tag": "0011_thin_moon_knight",
+      "breakpoints": true
     }
   ]
 }
