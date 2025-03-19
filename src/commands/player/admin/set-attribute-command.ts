@@ -14,9 +14,9 @@ export const data = new SlashCommandBuilder()
 	.setNameLocalizations({
 		"pt-BR": "setar-atributo",
 	})
-	.setDescription("Update an attribute of any sheet")
+	.setDescription("Update an attribute of any sheet [ADMIN]")
 	.setDescriptionLocalizations({
-		"pt-BR": "Atualiza um atributo de qualquer ficha",
+		"pt-BR": "Atualiza um atributo de qualquer ficha [ADMIN]",
 	})
 	.addIntegerOption((option) =>
 		option

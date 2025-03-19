@@ -12,8 +12,10 @@ import { SlashCommandBuilder } from "discord.js";
 export const data = new SlashCommandBuilder()
 	.setName("send-point")
 	.setNameLocalizations({ "pt-BR": "enviar-ponto" })
-	.setDescription("Send points to another player")
-	.setDescriptionLocalizations({ "pt-BR": "Envia pontos para outro jogador" })
+	.setDescription("Sends points to a sheet [ADMIN]")
+	.setDescriptionLocalizations({
+		"pt-BR": "Envia pontos para uma ficha [ADMIN]",
+	})
 	.addIntegerOption((option) =>
 		option
 			.setName("sheet")

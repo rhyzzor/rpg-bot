@@ -12,12 +12,12 @@ import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
 	.setName("create-sheet")
-	.setDescription("Create a sheet")
+	.setDescription("Create a sheet [ADMIN]")
 	.setNameLocalizations({
 		"pt-BR": "criar-ficha",
 	})
 	.setDescriptionLocalizations({
-		"pt-BR": "Cria uma ficha",
+		"pt-BR": "Cria uma ficha [ADMIN]",
 	})
 	.addUserOption((option) =>
 		option

@@ -16,7 +16,7 @@ export async function showEditModal(
 
 	const modal = generateItemModal({
 		...item,
-		title: translate("item.edit.title", locale),
+		title: translate("item.edit.title", { lng: locale }),
 		customId,
 		locale,
 	});
@@ -25,13 +25,13 @@ export async function showEditModal(
 
 	const modalInteraction = await interaction.awaitModalSubmit({
 		filter: (i) => i.customId === customId && i.user.id === interaction.user.id,
-		time: 60_000,
+		time: 200_000,
 	});
 
 	const guildId = modalInteraction.guildId;
 
 	if (!guildId) {
-		await modalInteraction.reply(translate("item.edit.error", locale));
+		await modalInteraction.reply(translate("item.edit.error", { lng: locale }));
 		return;
 	}
 
@@ -53,7 +53,7 @@ export async function showEditModal(
 	});
 
 	await modalInteraction.reply({
-		content: translate("item.edit.success", locale),
+		content: translate("item.edit.success", { lng: locale }),
 		flags: "Ephemeral",
 	});
 

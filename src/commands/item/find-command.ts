@@ -15,6 +15,7 @@ import {
 	ButtonStyle,
 	type CacheType,
 	EmbedBuilder,
+	type PermissionsBitField,
 	SlashCommandBuilder,
 } from "discord.js";
 
@@ -48,6 +49,17 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	const item = await findItemUseCase(selectedItemId);
 
+	const embed = new EmbedBuilder()
+		.setTitle(item.name)
+		.setThumbnail(item.url)
+		.setFields({
+			name: translate("embed.label.description", { lng }),
+			value: item.description,
+		});
+
+	const permissions = interaction.member?.permissions as PermissionsBitField;
+	const isAdmin = permissions.has("Administrator");
+
 	const options = [
 		{
 			name: translate("button.label.edit", { lng }),
@@ -67,34 +79,32 @@ export async function run({ interaction }: SlashCommandProps) {
 		},
 	];
 
-	const buttons = options.map((option) => {
-		return new ButtonBuilder()
-			.setEmoji(option.emoji)
-			.setLabel(option.name)
-			.setStyle(option.style)
-			.setCustomId(option.name);
-	});
+	let row = undefined;
 
-	const embed = new EmbedBuilder()
-		.setTitle(item.name)
-		.setThumbnail(item.url)
-		.setFields({
-			name: translate("embed.label.description", { lng }),
-			value: item.description,
+	if (isAdmin) {
+		const buttons = options.map((option) => {
+			return new ButtonBuilder()
+				.setEmoji(option.emoji)
+				.setLabel(option.name)
+				.setStyle(option.style)
+				.setCustomId(option.name);
 		});
 
-	const row = new ActionRowBuilder<ButtonBuilder>().addComponents(buttons);
+		row = new ActionRowBuilder<ButtonBuilder>().addComponents(buttons);
+	}
 
 	const reply = await interaction.reply({
 		embeds: [embed],
-		components: [row],
+		components: row ? [row] : undefined,
 		flags: "Ephemeral",
 	});
+
+	if (!isAdmin) return;
 
 	const targetOptionInteraction = (await reply
 		.awaitMessageComponent({
 			filter: (i) => i.user.id === interaction.user.id,
-			time: 30_000,
+			time: 10_000,
 		})
 		.catch(async (_error) => {
 			await reply.edit({ embeds: [embed], components: [] });

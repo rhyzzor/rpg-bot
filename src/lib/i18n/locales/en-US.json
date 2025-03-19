@@ -96,7 +96,8 @@
 		"sheet": {
 			"create": "A sheet has been created for you! Check it on the server **{{server}}**  with the command **/sheet** characterName",
 			"edit": "Your sheet has been updated! Check it on the server **{{server}}** with the command **/sheet** characterName",
-			"points": "Points have been added to your character sheet! Check it on the server **{{server}}**  with the command **/sheet** characterName"
+			"points": "Points have been added to your character sheet! Check it on the server **{{server}}**  with the command **/sheet** characterName",
+			"inventory": "Your inventory has been updated! Check it on the server **{{server}}** with the command **/sheet** characterName"
 		}
 	}
 }

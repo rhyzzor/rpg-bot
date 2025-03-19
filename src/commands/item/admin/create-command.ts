@@ -6,12 +6,12 @@ import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
 	.setName("create-item")
-	.setDescription("Create an item")
+	.setDescription("Create an item [ADMIN]")
 	.setNameLocalizations({
 		"pt-BR": "criar-item",
 	})
 	.setDescriptionLocalizations({
-		"pt-BR": "Cria um item",
+		"pt-BR": "Cria um item [ADMIN]",
 	});
 
 export async function run({ interaction }: SlashCommandProps) {

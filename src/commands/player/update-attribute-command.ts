@@ -10,12 +10,12 @@ import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
 	.setName("update-attribute")
-	.setDescription("Update an attribute")
+	.setDescription("Update an attribute of your sheet")
 	.setNameLocalizations({
 		"pt-BR": "atualizar-atributo",
 	})
 	.setDescriptionLocalizations({
-		"pt-BR": "Atualiza um atributo",
+		"pt-BR": "Atualiza um atributo da sua ficha",
 	})
 	.addStringOption((option) =>
 		option

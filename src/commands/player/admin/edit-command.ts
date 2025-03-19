@@ -13,12 +13,12 @@ import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
 	.setName("edit-sheet")
-	.setDescription("Edit a sheet")
+	.setDescription("Edit a sheet [ADMIN]")
 	.setNameLocalizations({
 		"pt-BR": "editar-ficha",
 	})
 	.setDescriptionLocalizations({
-		"pt-BR": "Edita uma ficha",
+		"pt-BR": "Edita uma ficha [ADMIN]",
 	})
 	.addIntegerOption((option) =>
 		option

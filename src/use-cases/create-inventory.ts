@@ -1,5 +1,6 @@
 import { db } from "@/lib/database/drizzle";
 import { inventoryTable } from "@/lib/database/schema";
+import { findPlayerUseCase } from "./find-player";
 
 interface CreateInventoryProps {
 	guildId: string;
@@ -27,4 +28,8 @@ export async function createInventoryUseCase({
 				quantity,
 			},
 		});
+
+	const player = await findPlayerUseCase({ guildId, id: playerId });
+
+	return player;
 }
