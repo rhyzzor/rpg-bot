@@ -6,7 +6,11 @@ import type {
 	CommandOptions,
 	SlashCommandProps,
 } from "commandkit";
-import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import {
+	type ApplicationCommandOptionChoiceData,
+	EmbedBuilder,
+	SlashCommandBuilder,
+} from "discord.js";
 
 export const data = new SlashCommandBuilder()
 	.setName("class")
@@ -62,7 +66,7 @@ export async function run({ interaction }: SlashCommandProps) {
 				.join("\n"),
 		});
 
-	return await interaction.reply({ embeds: [embed], flags: "Ephemeral" });
+	return await interaction.reply({ embeds: [embed] });
 }
 
 export async function autocomplete({ interaction }: AutocompleteProps) {
@@ -74,7 +78,7 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 		guildId: interaction.guildId,
 	});
 
-	const filtered = classes
+	const filtered: ApplicationCommandOptionChoiceData[] = classes
 		.filter((sheet) =>
 			sheet.name
 				.toLowerCase()

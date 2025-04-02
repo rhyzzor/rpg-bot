@@ -19,20 +19,6 @@ export const data = new SlashCommandBuilder()
 	.setDescriptionLocalizations({
 		"pt-BR": "Cria uma ficha [ADMIN]",
 	})
-	.addUserOption((option) =>
-		option
-			.setName("user")
-			.setNameLocalizations({
-				"pt-BR": "usuário",
-				"en-US": "user",
-			})
-			.setDescription("Usuário")
-			.setDescriptionLocalizations({
-				"pt-BR": "Usuário do Discord",
-				"en-US": "User",
-			})
-			.setRequired(true),
-	)
 	.addIntegerOption((option) =>
 		option
 			.setName("class")
@@ -45,6 +31,20 @@ export const data = new SlashCommandBuilder()
 			})
 			.setAutocomplete(true)
 			.setRequired(true),
+	)
+	.addUserOption((option) =>
+		option
+			.setName("user")
+			.setNameLocalizations({
+				"pt-BR": "usuário",
+				"en-US": "user",
+			})
+			.setDescription("Usuário")
+			.setDescriptionLocalizations({
+				"pt-BR": "Usuário do Discord",
+				"en-US": "User",
+			})
+			.setRequired(false),
 	);
 
 export async function run({ interaction }: SlashCommandProps) {
@@ -67,7 +67,7 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	const modalInteraction = await interaction.awaitModalSubmit({
 		filter: (i) => i.customId === customId && i.user.id === interaction.user.id,
-		time: 90_000,
+		time: 600_000,
 	});
 
 	if (!modalInteraction || !modalInteraction.guildId) {
