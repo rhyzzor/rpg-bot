@@ -10,8 +10,8 @@ import type {
 import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
-	.setName("send-point")
-	.setNameLocalizations({ "pt-BR": "enviar-ponto" })
+	.setName("send-points")
+	.setNameLocalizations({ "pt-BR": "enviar-pontos" })
 	.setDescription("Sends points to a sheet [ADMIN]")
 	.setDescriptionLocalizations({
 		"pt-BR": "Envia pontos para uma ficha [ADMIN]",
