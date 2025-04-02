@@ -25,7 +25,7 @@ export async function showEditModal(
 
 	const modalInteraction = await interaction.awaitModalSubmit({
 		filter: (i) => i.customId === customId && i.user.id === interaction.user.id,
-		time: 600_000,
+		time: 2000000,
 	});
 
 	const guildId = modalInteraction.guildId;

@@ -67,7 +67,7 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	const modalInteraction = await interaction.awaitModalSubmit({
 		filter: (i) => i.customId === customId && i.user.id === interaction.user.id,
-		time: 600_000,
+		time: 2000000,
 	});
 
 	if (!modalInteraction || !modalInteraction.guildId) {
