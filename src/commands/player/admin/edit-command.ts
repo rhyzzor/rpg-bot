@@ -39,7 +39,7 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	const playerId = interaction.options.getInteger("sheet", true);
 
-	const customId = interaction.id;
+	const customId = "modal#player-edit";
 
 	const lng = interaction.locale;
 

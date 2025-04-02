@@ -12,7 +12,7 @@ interface ModalProps {
 	url?: string;
 	background?: string;
 	extraDetails?: string | null;
-	customId: string;
+	customId: "modal#player-create" | "modal#player-edit";
 	title: string;
 	locale: string;
 }

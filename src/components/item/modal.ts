@@ -11,7 +11,7 @@ interface ModalProps {
 	name?: string;
 	description?: string;
 	url?: string;
-	customId: string;
+	customId: "modal#item-create" | "modal#item-edit";
 	title: string;
 	locale: string;
 }

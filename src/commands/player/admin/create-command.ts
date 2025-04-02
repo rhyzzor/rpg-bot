@@ -53,7 +53,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	const user = interaction.options.getUser("user");
 	const selectedClass = interaction.options.getInteger("class", true);
 
-	const customId = interaction.id;
+	const customId = "modal#player-create";
 
 	const lng = interaction.locale;
 

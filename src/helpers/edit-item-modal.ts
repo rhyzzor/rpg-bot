@@ -12,7 +12,7 @@ export async function showEditModal(
 
 	const locale = interaction.locale;
 
-	const customId = `modal#${interaction.id}`;
+	const customId = "modal#item-edit";
 
 	const modal = generateItemModal({
 		...item,

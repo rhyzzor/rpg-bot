@@ -15,7 +15,7 @@ export const data = new SlashCommandBuilder()
 	});
 
 export async function run({ interaction }: SlashCommandProps) {
-	const customId = interaction.id;
+	const customId = "modal#item-create";
 
 	const lng = interaction.locale;
 
