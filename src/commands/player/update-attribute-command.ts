@@ -40,6 +40,7 @@ export const data = new SlashCommandBuilder()
 			.setDescriptionLocalizations({
 				"pt-BR": "Quantidade de pontos",
 			})
+			.setMinValue(1)
 			.setRequired(true),
 	);
 
