@@ -1,3 +1,4 @@
+import { sheetCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { playerTable } from "@/lib/database/schema";
 import { and, eq, sql } from "drizzle-orm";
@@ -21,6 +22,10 @@ export async function sendPointUseCase({
 		.where(and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)))
 		.returning()
 		.get();
+
+	if (player) {
+		await sheetCache.delete(guildId);
+	}
 
 	return player;
 }

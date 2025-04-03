@@ -1,3 +1,4 @@
+import { sheetCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { inventoryTable } from "@/lib/database/schema";
 import { findPlayerUseCase } from "./find-player";
@@ -28,6 +29,8 @@ export async function createInventoryUseCase({
 				quantity,
 			},
 		});
+
+	await sheetCache.delete(guildId);
 
 	const player = await findPlayerUseCase({ guildId, id: playerId });
 

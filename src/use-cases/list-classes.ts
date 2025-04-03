@@ -1,5 +1,6 @@
+import { classCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
-import { classTable } from "@/lib/database/schema";
+import { type ClassDTO, classTable } from "@/lib/database/schema";
 import { asc, eq } from "drizzle-orm";
 
 interface ListClassesProps {
@@ -7,13 +8,21 @@ interface ListClassesProps {
 }
 
 export async function listClassesUseCase({ guildId }: ListClassesProps) {
+	const hasCache = await classCache.has(guildId);
+
+	if (hasCache) {
+		const classes = await classCache.get<ClassDTO[]>(guildId);
+
+		if (classes) return classes;
+	}
+
 	const classes = await db
 		.select()
 		.from(classTable)
 		.where(eq(classTable.guildId, guildId))
 		.orderBy(asc(classTable.name));
 
-	//TODO: business rules
+	await classCache.set(guildId, classes);
 
 	return classes;
 }

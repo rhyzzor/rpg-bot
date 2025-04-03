@@ -1,3 +1,4 @@
+import { sheetCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { playerTable } from "@/lib/database/schema";
 import { and, eq } from "drizzle-orm";
@@ -25,6 +26,10 @@ export async function updatePlayerUseCase({
 		.where(and(eq(playerTable.id, id), eq(playerTable.guildId, guildId)))
 		.returning()
 		.get();
+
+	if (player) {
+		await sheetCache.delete(guildId);
+	}
 
 	return player;
 }

@@ -1,3 +1,4 @@
+import { sheetCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { inventoryTable, playerTable } from "@/lib/database/schema";
 import { and, eq } from "drizzle-orm";
@@ -41,6 +42,10 @@ export async function resetPlayerUseCase({
 
 		return sheet;
 	});
+
+	if (sheet) {
+		await sheetCache.delete(guildId);
+	}
 
 	return sheet;
 }

@@ -1,3 +1,4 @@
+import { sheetCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { classTable, playerTable } from "@/lib/database/schema";
 import { eq } from "drizzle-orm";
@@ -25,4 +26,6 @@ export async function createPlayerUseCase(data: CreatePlayerProps) {
 	}
 
 	await db.insert(playerTable).values({ ...data, stats: selectedClass.stats });
+
+	await sheetCache.delete(data.guildId);
 }

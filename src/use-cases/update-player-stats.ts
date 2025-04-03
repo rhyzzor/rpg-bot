@@ -1,3 +1,4 @@
+import { sheetCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { type StatsType, playerTable } from "@/lib/database/schema";
 import { and, eq } from "drizzle-orm";
@@ -14,8 +15,14 @@ export async function updatePlayerStatsUseCase({
 	stats,
 	points,
 }: UpdatePlayerStatsProps) {
-	await db
+	const player = await db
 		.update(playerTable)
 		.set({ stats, points })
-		.where(and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)));
+		.where(and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)))
+		.returning()
+		.get();
+
+	if (player) {
+		await sheetCache.delete(guildId);
+	}
 }

@@ -1,3 +1,4 @@
+import { itemCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { itemTable } from "@/lib/database/schema";
 
@@ -20,4 +21,6 @@ export async function createItemUseCase({
 		url,
 		name,
 	});
+
+	await itemCache.delete(guildId);
 }

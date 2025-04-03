@@ -1,3 +1,4 @@
+import { itemCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { itemTable } from "@/lib/database/schema";
 import { and, eq } from "drizzle-orm";
@@ -17,12 +18,18 @@ export async function updateItemUseCase({
 	guildId,
 	url,
 }: EditItemProps) {
-	await db
+	const item = await db
 		.update(itemTable)
 		.set({
 			name,
 			description,
 			url,
 		})
-		.where(and(eq(itemTable.id, id), eq(itemTable.guildId, guildId)));
+		.where(and(eq(itemTable.id, id), eq(itemTable.guildId, guildId)))
+		.returning()
+		.get();
+
+	if (item) {
+		await itemCache.delete(guildId);
+	}
 }
