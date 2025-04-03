@@ -2,25 +2,25 @@ import { db } from "@/lib/database/drizzle";
 import { playerTable } from "@/lib/database/schema";
 import { and, eq, sql } from "drizzle-orm";
 
-interface RestorePlayerProps {
+interface CombatPlayerProps {
 	playerId: number;
 	guildId: string;
-	mana: number;
 	hp: number;
+	mana: number;
 }
 
-export async function restorePlayerUseCase({
+export async function combatPlayerUseCase({
 	playerId,
 	guildId,
 	hp,
 	mana,
-}: RestorePlayerProps) {
+}: CombatPlayerProps) {
 	const player = await db.transaction(async (tx) => {
-		const updated = await tx
+		const player = await tx
 			.update(playerTable)
 			.set({
-				mana: sql`${playerTable.mana} + ${mana}`,
-				hp: sql`${playerTable.hp} + ${hp}`,
+				mana: sql`${playerTable.mana} - ${mana}`,
+				hp: sql`${playerTable.hp} - ${hp}`,
 			})
 			.where(
 				and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)),
@@ -28,14 +28,16 @@ export async function restorePlayerUseCase({
 			.returning()
 			.get();
 
-		if (updated.hp > 0) {
+		if (player.hp <= 0) {
 			await tx
 				.update(playerTable)
-				.set({ status: "alive" })
-				.where(eq(playerTable.id, updated.id));
+				.set({ hp: 0, status: "dead" })
+				.where(eq(playerTable.id, playerId))
+				.returning()
+				.get();
 		}
 
-		return updated;
+		return player;
 	});
 
 	return player;

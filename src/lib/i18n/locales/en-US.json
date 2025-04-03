@@ -45,6 +45,7 @@
 		}
 	},
 	"player": {
+		"combat": "Combat successfully completed!",
 		"reset": "Sheet reset successfully!",
 		"restore": "Sheet restored successfully!",
 		"errors": {
@@ -101,7 +102,9 @@
 			"points": "Points have been added to your character sheet! Check it on the server **{{server}}**  with the command **/sheet** characterName",
 			"inventory": "Your inventory has been updated! Check it on the server **{{server}}** with the command **/sheet** characterName",
 			"reset": "The attributes of your character sheet have been reset! Check it on the server **{{server}}** with the command **/sheet** characterName",
-			"restore": "Your mana and HP have been restored! Check it on the server **{{server}}** with the command **/sheet** characterName"
+			"restore": "Your mana and HP have been restored! Check it on the server **{{server}}** with the command **/sheet** characterName",
+			"combat": "You had a combat! Check it on the server **{{server}}** with the command **/sheet** characterName",
+			"dead": "Your character died! Check it on the server **{{server}}** with the command **/sheet** characterName"
 		}
 	},
 	"class": {

@@ -46,6 +46,7 @@
 		}
 	},
 	"player": {
+		"combat": "Combate realizado com sucesso!",
 		"reset": "Ficha resetada com sucesso!",
 		"restore": "Ficha restaurada com sucesso!",
 		"errors": {
@@ -101,7 +102,9 @@
 			"points": "Pontos foram adicionados na sua ficha! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
 			"inventory": "Seu inventário foi atualizado! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
 			"reset": "Os atributos da sua ficha foram resetados! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
-			"restore": "Sua mana e HP foram restaurados! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem"
+			"restore": "Sua mana e HP foram restaurados! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
+			"combat": "Você teve um combate! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
+			"dead": "Seu personagem morreu! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem"
 		}
 	},
 	"class": {
