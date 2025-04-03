@@ -1,3 +1,4 @@
+import { calculateHpAndMana } from "@/helpers/calculate-hp-and-mana";
 import { translate } from "@/lib/i18n";
 import { findPlayerUseCase } from "@/use-cases/find-player";
 import { listPlayersUseCase } from "@/use-cases/list-players";
@@ -72,6 +73,8 @@ export async function run({ interaction }: SlashCommandProps) {
 		});
 	}
 
+	const { hp, mana } = calculateHpAndMana(player);
+
 	const embed = new EmbedBuilder()
 		.setColor(0x0099ff)
 		.setTitle(player.name)
@@ -94,10 +97,16 @@ export async function run({ interaction }: SlashCommandProps) {
 				name: translate("attribute.label", {
 					lng: interaction.locale,
 				}).toUpperCase(),
-				value: player.stats
-					.map(
-						(stat) =>
-							`${translate(`attribute.${stat.label.toLowerCase()}`, { lng: interaction.locale })}: **${stat.value}**`,
+				value: [
+					`Level: **${player.level}**`,
+					`HP: **${player.hp}/${hp}**`,
+					`Mana: **${player.mana}/${mana}**`,
+				]
+					.concat(
+						player.stats.map(
+							(stat) =>
+								`${translate(`attribute.${stat.label.toLowerCase()}`, { lng: interaction.locale })}: **${stat.value}**`,
+						),
 					)
 					.join("\n"),
 			},

@@ -38,7 +38,7 @@ export const data = new SlashCommandBuilder()
 		option.setName("hp").setDescription("HP").setRequired(true).setMinValue(0),
 	);
 
-export async function execute({ interaction }: SlashCommandProps) {
+export async function run({ interaction }: SlashCommandProps) {
 	if (!interaction.guildId) {
 		return;
 	}
@@ -74,6 +74,7 @@ export async function execute({ interaction }: SlashCommandProps) {
 }
 
 export async function autocomplete({ interaction }: AutocompleteProps) {
+	console.log("oii");
 	if (!interaction.guildId) {
 		return;
 	}
@@ -98,7 +99,7 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 	await interaction.respond(result);
 }
 
-export const option: CommandOptions = {
+export const options: CommandOptions = {
 	devOnly: true,
 	permissions: ["ADMINISTRATOR"],
 };

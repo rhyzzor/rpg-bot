@@ -1,3 +1,4 @@
+import { calculateHpAndMana } from "@/helpers/calculate-hp-and-mana";
 import { db } from "@/lib/database/drizzle";
 import { playerTable } from "@/lib/database/schema";
 import { and, eq, sql } from "drizzle-orm";
@@ -27,6 +28,22 @@ export async function restorePlayerUseCase({
 			)
 			.returning()
 			.get();
+
+		const { hp: maxHp, mana: maxMana } = calculateHpAndMana(updated);
+
+		if (maxHp < updated.hp && updated.externalId) {
+			await tx
+				.update(playerTable)
+				.set({ hp: maxHp })
+				.where(eq(playerTable.id, updated.id));
+		}
+
+		if (maxMana < updated.mana && updated.externalId) {
+			await tx
+				.update(playerTable)
+				.set({ mana: maxMana })
+				.where(eq(playerTable.id, updated.id));
+		}
 
 		if (updated.hp > 0) {
 			await tx

@@ -37,7 +37,7 @@ export const data = new SlashCommandBuilder()
 			.setMinValue(0),
 	)
 	.addIntegerOption((option) =>
-		option.setName("HP").setDescription("HP").setRequired(true).setMinValue(0),
+		option.setName("hp").setDescription("HP").setRequired(true).setMinValue(0),
 	);
 
 export async function run({ interaction }: SlashCommandProps) {
