@@ -85,11 +85,24 @@ export async function run({ interaction }: SlashCommandProps) {
 		return stat;
 	});
 
+	let hp = sheet.hp;
+	let mana = sheet.mana;
+
+	if (attribute === "constitution") {
+		hp += quantity * 2;
+	}
+
+	if (attribute === "intelligence") {
+		mana += quantity * 2;
+	}
+
 	await updatePlayerStatsUseCase({
 		playerId: sheet.id,
 		guildId: interaction.guildId,
 		stats: newStats,
 		points: sheet.points - quantity,
+		hp,
+		mana,
 	});
 
 	return await interaction.reply({

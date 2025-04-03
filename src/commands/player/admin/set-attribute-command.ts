@@ -55,7 +55,9 @@ export async function run({ interaction }: SlashCommandProps) {
 	const guildId = interaction.guildId;
 
 	const playerId = interaction.options.getInteger("sheet", true);
-	const attribute = interaction.options.getString("attribute", true);
+	const attribute = interaction.options
+		.getString("attribute", true)
+		.toLowerCase();
 	const points = interaction.options.getInteger("points", true);
 
 	const sheet = await findPlayerUseCase({ id: playerId, guildId });
@@ -70,7 +72,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	}
 
 	const newStats = sheet.stats.map((stat) => {
-		if (stat.label.toLowerCase() === attribute.toLowerCase()) {
+		if (stat.label.toLowerCase() === attribute) {
 			return {
 				...stat,
 				value: points,
@@ -80,11 +82,26 @@ export async function run({ interaction }: SlashCommandProps) {
 		return stat;
 	});
 
+	let hp = sheet.hp;
+	let mana = sheet.mana;
+	let level = sheet.level;
+
+	if (attribute === "hp") {
+		hp = points;
+	} else if (attribute === "mana") {
+		mana = points;
+	} else if (attribute === "level") {
+		level = points;
+	}
+
 	await updatePlayerStatsUseCase({
 		guildId,
 		playerId,
 		stats: newStats,
 		points,
+		hp,
+		mana,
+		level,
 	});
 
 	return await interaction.reply({
@@ -141,6 +158,18 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 			{
 				name: translate("attribute.charisma", { lng }),
 				value: "charisma",
+			},
+			{
+				name: "HP",
+				value: "hp",
+			},
+			{
+				name: "Mana",
+				value: "mana",
+			},
+			{
+				name: "Level",
+				value: "level",
 			},
 		];
 

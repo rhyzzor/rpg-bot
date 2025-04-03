@@ -18,6 +18,9 @@ export async function sendPointUseCase({
 		.update(playerTable)
 		.set({
 			points: sql`${playerTable.points} + ${quantity}`,
+			hp: sql`${playerTable.hp} + ${quantity * 5}`,
+			mana: sql`${playerTable.mana} + ${quantity * 5}`,
+			level: sql`${playerTable.level} + ${quantity}`,
 		})
 		.where(and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)))
 		.returning()
