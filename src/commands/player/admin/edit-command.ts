@@ -119,7 +119,7 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 
 	const guildId = interaction.guildId;
 
-	const focusedOption = interaction.options.getFocused(true).value;
+	const focusedOption = interaction.options.getFocused(true).value.trim();
 
 	const sheets = await listPlayersUseCase({
 		guildId,

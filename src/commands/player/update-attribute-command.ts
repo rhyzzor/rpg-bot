@@ -112,7 +112,7 @@ export async function run({ interaction }: SlashCommandProps) {
 }
 
 export async function autocomplete({ interaction }: AutocompleteProps) {
-	const focusedOption = interaction.options.getFocused(true).value;
+	const focusedOption = interaction.options.getFocused(true).value.trim();
 	const lng = interaction.locale;
 
 	const attributes = [

@@ -45,6 +45,8 @@
 		}
 	},
 	"player": {
+		"reset": "Sheet reset successfully!",
+		"restore": "Sheet restored successfully!",
 		"errors": {
 			"not-found": "Sheet not found. Ask the admin to create one!",
 			"not-enough-points": "You don't have enough points! You have only **{{points}}** points."
@@ -98,7 +100,8 @@
 			"edit": "Your sheet has been updated! Check it on the server **{{server}}** with the command **/sheet** characterName",
 			"points": "Points have been added to your character sheet! Check it on the server **{{server}}**  with the command **/sheet** characterName",
 			"inventory": "Your inventory has been updated! Check it on the server **{{server}}** with the command **/sheet** characterName",
-			"reset": "The attributes of your character sheet have been reset! Check it on the server **{{server}}** with the command **/sheet** characterName"
+			"reset": "The attributes of your character sheet have been reset! Check it on the server **{{server}}** with the command **/sheet** characterName",
+			"restore": "Your mana and HP have been restored! Check it on the server **{{server}}** with the command **/sheet** characterName"
 		}
 	},
 	"class": {
