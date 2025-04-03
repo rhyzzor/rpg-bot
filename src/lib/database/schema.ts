@@ -32,6 +32,8 @@ export const classTable = sqliteTable("class", {
 	stats: text("stats", { mode: "json" }).$type<StatsType[]>().notNull(),
 });
 
+export type ClassDTO = typeof classTable.$inferSelect;
+
 export const playerTable = sqliteTable("player", {
 	id: integer("id").primaryKey({ autoIncrement: true }),
 	externalId: text("external_id"),
@@ -54,10 +56,10 @@ export const inventoryTable = sqliteTable(
 	{
 		id: integer("id").primaryKey({ autoIncrement: true }),
 		playerId: integer("player_id")
-			.references(() => playerTable.id)
+			.references(() => playerTable.id, { onDelete: "cascade" })
 			.notNull(),
 		itemId: integer("item_id")
-			.references(() => itemTable.id)
+			.references(() => itemTable.id, { onDelete: "cascade" })
 			.notNull(),
 		quantity: integer("quantity").notNull(),
 		guildId: text("guild_id").notNull(),
