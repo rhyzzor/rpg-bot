@@ -97,7 +97,8 @@
 			"create": "Uma ficha foi criada para você! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
 			"edit": "Sua ficha foi atualizada! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
 			"points": "Pontos foram adicionados na sua ficha! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
-			"inventory": "Seu inventário foi atualizado! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem"
+			"inventory": "Seu inventário foi atualizado! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
+			"reset": "Os atributos da sua ficha foram resetados! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem"
 		}
 	},
 	"class": {
