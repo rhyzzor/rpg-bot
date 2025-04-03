@@ -13,8 +13,6 @@ export async function listPlayersUseCase({ guildId }: ListPlayersProps) {
 	if (hasCache) {
 		const sheets = await sheetCache.get<PlayerDTO[]>(guildId);
 
-		console.log("sheets", sheets?.length);
-
 		if (sheets) return sheets;
 	}
 
@@ -24,7 +22,6 @@ export async function listPlayersUseCase({ guildId }: ListPlayersProps) {
 		.where(eq(playerTable.guildId, guildId))
 		.orderBy(asc(playerTable.name));
 
-	console.log("setou cache");
 	await sheetCache.set(guildId, players);
 
 	return players;
