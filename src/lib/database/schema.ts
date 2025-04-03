@@ -36,6 +36,12 @@ export type ClassDTO = typeof classTable.$inferSelect;
 
 export const playerTable = sqliteTable("player", {
 	id: integer("id").primaryKey({ autoIncrement: true }),
+	level: integer("level").notNull().default(1),
+	hp: integer("hp").notNull().default(30),
+	status: text("status", { enum: ["alive", "dead"] })
+		.notNull()
+		.default("alive"),
+	mana: integer("mana").notNull().default(40),
 	externalId: text("external_id"),
 	guildId: text("guild_id").notNull(),
 	classId: integer("class_id")

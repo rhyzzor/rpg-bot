@@ -1,0 +1,1 @@
+ALTER TABLE `player` ADD `mana` integer DEFAULT 40 NOT NULL;
