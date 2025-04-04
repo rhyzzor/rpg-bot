@@ -1,0 +1,236 @@
+[
+	{
+		"id": 1,
+		"name": "Rogue",
+		"name_ptBR": "Ladino",
+		"name_enUS": "Rogue",
+		"description_ptBR": "Os ladinos são mestres da furtividade, da astúcia e da habilidade manual. Ágeis e inteligentes, eles se destacam em explorar pontos fracos, desarmar armadilhas e roubar objetos valiosos sem serem detectados. Embora não sejam conhecidos pela força bruta, sua destreza e criatividade no combate e em situações sociais os tornam adversários imprevisíveis. Com um vasto conhecimento de truques, enganos e estratégias, os ladinos são especialistas em manipulação e furtividade, prontos para usar qualquer vantagem a seu favor.",
+		"description_enUS": "Rogues are masters of stealth, cunning, and manual dexterity. Agile and intelligent, they excel at exploiting weaknesses, disarming traps, and stealing valuable objects without being detected. Although not known for brute strength, their dexterity and creativity in combat and social situations make them unpredictable adversaries. With a vast knowledge of tricks, deceptions, and strategies, rogues are experts in manipulation and stealth, always ready to use any advantage to their favor.",
+		"description": "Rogues are masters of stealth, cunning, and manual dexterity. Agile and intelligent, they excel at exploiting weaknesses, disarming traps, and stealing valuable objects without being detected. Although not known for brute strength, their dexterity and creativity in combat and social situations make them unpredictable adversaries. With a vast knowledge of tricks, deceptions, and strategies, rogues are experts in manipulation and stealth, always ready to use any advantage to their favor.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/384/420/618/636272820319276620.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 2,
+		"name": "Barbarian",
+		"name_ptBR": "Bárbaro",
+		"name_enUS": "Barbarian",
+		"description_ptBR": "Os bárbaros são guerreiros selvagens, impulsionados pela fúria e pela força bruta. Originários de tribos primitivas ou terras inexploradas, eles entram em combate com um poder avassalador, desferindo golpes destrutivos e resistindo a ferimentos com uma resistência quase sobrenatural. Sua raiva os torna imbatíveis, e sua habilidade em sobreviver nas condições mais hostis os transforma em adversários temíveis, capazes de derrubar qualquer inimigo com sua força indomável.",
+		"description_enUS": "Barbarians are savage warriors, driven by fury and brute strength. Originating from primitive tribes or unexplored lands, they enter combat with overwhelming power, delivering destructive blows and resisting injuries with almost supernatural endurance. Their rage makes them unbeatable, and their ability to survive in the harshest conditions turns them into fearsome adversaries, capable of taking down any enemy with their indomitable strength.",
+		"description": "Barbarians are savage warriors, driven by fury and brute strength. Originating from primitive tribes or unexplored lands, they enter combat with overwhelming power, delivering destructive blows and resisting injuries with almost supernatural endurance. Their rage makes them unbeatable, and their ability to survive in the harshest conditions turns them into fearsome adversaries, capable of taking down any enemy with their indomitable strength.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/342/420/618/636272680339895080.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 3,
+		"name": "Artificer",
+		"name_ptBR": "Artífice",
+		"name_enUS": "Artificer",
+		"description_ptBR": "Os artífices são mestres da engenharia e da magia, combinando ciência e encantamento para criar invenções extraordinárias. Com habilidade para forjar armas mágicas, armaduras aprimoradas e dispositivos arcano-tecnológicos, eles usam sua engenhosidade para resolver problemas e enfrentar desafios de formas criativas. Seja construindo golems de batalha, armadilhas complexas ou engenhocas poderosas, os artífices são inventores brilhantes, sempre prontos para transformar a magia e a mecânica em suas aliadas mais poderosas.",
+		"description_enUS": "Artificers are masters of engineering and magic, combining science and enchantment to create extraordinary inventions. With the skill to forge magical weapons, enhanced armor, and arcane-technological devices, they use their ingenuity to solve problems and face challenges in creative ways. Whether building battle golems, complex traps, or powerful contraptions, artificers are brilliant inventors, always ready to turn magic and mechanics into their most powerful allies.",
+		"description": "Artificers are masters of engineering and magic, combining science and enchantment to create extraordinary inventions. With the skill to forge magical weapons, enhanced armor, and arcane-technological devices, they use their ingenuity to solve problems and face challenges in creative ways. Whether building battle golems, complex traps, or powerful contraptions, artificers are brilliant inventors, always ready to turn magic and mechanics into their most powerful allies.",
+		"url": "https://media-waterdeep.cursecdn.com/attachments/thumbnails/4/614/450/492/416.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 4,
+		"name": "Bard",
+		"name_ptBR": "Bardo",
+		"name_enUS": "Bard",
+		"description_ptBR": "Os bardos são mestres da música, da poesia e da arte, usando seu talento para inspirar aliados, confundir inimigos e manipular as emoções ao seu redor. Com um vasto conhecimento de histórias, encantamentos e magias, eles tecem canções que curam, protegem ou debilitam. Sua presença no campo de batalha é tanto estratégica quanto encantadora, tornando-os valiosos tanto como líderes carismáticos quanto como engenhosos manipuladores da magia e da mente humana.",
+		"description_enUS": "Bards are masters of music, poetry, and art, using their talent to inspire allies, confuse enemies, and manipulate emotions around them. With a vast knowledge of stories, enchantments, and spells, they weave songs that heal, protect, or weaken. Their presence on the battlefield is both strategic and enchanting, making them valuable as charismatic leaders as well as ingenious manipulators of magic and the human mind.",
+		"description": "Bards are masters of music, poetry, and art, using their talent to inspire allies, confuse enemies, and manipulate emotions around them. With a vast knowledge of stories, enchantments, and spells, they weave songs that heal, protect, or weaken. Their presence on the battlefield is both strategic and enchanting, making them valuable as charismatic leaders as well as ingenious manipulators of magic and the human mind.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/369/420/618/636272705936709430.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 5,
+		"name": "Warlock",
+		"name_ptBR": "Bruxo",
+		"name_enUS": "Warlock",
+		"description_ptBR": "Os bruxos são conjuradores que formam pactos com entidades poderosas, como demônios, fadas ou outras criaturas sobrenaturais, em troca de habilidades mágicas e conhecimentos proibidos. Sua magia é baseada em acordos e pactos, o que os torna tanto manipuladores quanto perigosos. Armados com feitiços devastadores, maldições e encantamentos, os bruxos podem invocar seres de outros planos, manipular energias arcanas e transformar a realidade ao seu redor. Sua lealdade à entidade com a qual pactuam é central para sua força, mas também pode ser sua maior fraqueza.",
+		"description_enUS": "Warlocks are spellcasters who form pacts with powerful entities, such as demons, fairies, or other supernatural creatures, in exchange for magical abilities and forbidden knowledge. Their magic is based on agreements and pacts, making them both manipulative and dangerous. Armed with devastating spells, curses, and enchantments, warlocks can summon beings from other planes, manipulate arcane energies, and alter reality around them. Their loyalty to the entity they pact with is central to their strength but can also be their greatest weakness.",
+		"description": "Warlocks are spellcasters who form pacts with powerful entities, such as demons, fairies, or other supernatural creatures, in exchange for magical abilities and forbidden knowledge. Their magic is based on agreements and pacts, making them both manipulative and dangerous. Armed with devastating spells, curses, and enchantments, warlocks can summon beings from other planes, manipulate arcane energies, and alter reality around them. Their loyalty to the entity they pact with is central to their strength but can also be their greatest weakness.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/375/420/618/636272708661726603.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 6,
+		"name": "Cleric",
+		"name_ptBR": "Clérigo",
+		"name_enUS": "Cleric",
+		"description_ptBR": "Os clérigos são servos devotos de uma divindade, imbuídos de poder sagrado para curar, proteger e purificar. Com sua fé inabalável, eles canalizam a energia divina para curar feridas, proteger aliados com bênçãos e combater as forças das trevas. Além de serem habilidosos em combate, os clérigos são fontes de sabedoria e orientação espiritual, usando seus poderes para fortalecer os laços entre o mundo mortal e o divino. Suas orações e rituais tornam-se armas contra o mal e uma luz de esperança para os necessitados.",
+		"description_enUS": "Clerics are devoted servants of a deity, imbued with sacred power to heal, protect, and purify. With their unshakable faith, they channel divine energy to heal wounds, shield allies with blessings, and combat the forces of darkness. Besides being skilled in combat, clerics are sources of wisdom and spiritual guidance, using their powers to strengthen the bonds between the mortal world and the divine. Their prayers and rituals become weapons against evil and a beacon of hope for the needy.",
+		"description": "Clerics are devoted servants of a deity, imbued with sacred power to heal, protect, and purify. With their unshakable faith, they channel divine energy to heal wounds, shield allies with blessings, and combat the forces of darkness. Besides being skilled in combat, clerics are sources of wisdom and spiritual guidance, using their powers to strengthen the bonds between the mortal world and the divine. Their prayers and rituals become weapons against evil and a beacon of hope for the needy.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/371/420/618/636272706155064423.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 7,
+		"name": "Druid",
+		"name_ptBR": "Druida",
+		"name_enUS": "Druid",
+		"description_ptBR": "Os druidas são guardiões da natureza, conectados profundamente aos elementos, aos animais e à terra. Com uma sabedoria ancestral, eles têm o poder de manipular a flora, controlar os elementos naturais e transformar-se em diversas criaturas. Guiados por um forte senso de equilíbrio e harmonia, os druidas usam suas habilidades para proteger o mundo natural e restaurar a ordem nas forças da natureza. Sua magia é sutil, mas poderosa, e eles são aliados valiosos tanto no campo de batalha quanto na preservação do meio ambiente.",
+		"description_enUS": "Druids are guardians of nature, deeply connected to the elements, animals, and the earth. With ancestral wisdom, they have the power to manipulate flora, control natural elements, and transform into various creatures. Guided by a strong sense of balance and harmony, druids use their abilities to protect the natural world and restore order to the forces of nature. Their magic is subtle but powerful, and they are valuable allies both on the battlefield and in environmental preservation.",
+		"description": "Druids are guardians of nature, deeply connected to the elements, animals, and the earth. With ancestral wisdom, they have the power to manipulate flora, control natural elements, and transform into various creatures. Guided by a strong sense of balance and harmony, druids use their abilities to protect the natural world and restore order to the forces of nature. Their magic is subtle but powerful, and they are valuable allies both on the battlefield and in environmental preservation.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/346/420/618/636272691461725405.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 8,
+		"name": "Sorcerer",
+		"name_ptBR": "Feiticeiro",
+		"name_enUS": "Sorcerer",
+		"description_ptBR": "Os feiticeiros são seres dotados de magia inata, fruto de uma herança mística ou de um despertar arcano em seu sangue. Diferente de magos estudiosos, sua magia flui naturalmente, manifestando-se em feitiços poderosos e efeitos espontâneos. Guiados pelo instinto e pela força de sua linhagem, os feiticeiros moldam a realidade com pura energia mágica, tornando-se adversários imprevisíveis e fontes inesgotáveis de poder arcano.",
+		"description_enUS": "Sorcerers are beings gifted with innate magic, stemming from a mystical heritage or an arcane awakening in their blood. Unlike scholarly wizards, their magic flows naturally, manifesting in powerful spells and spontaneous effects. Guided by instinct and the strength of their lineage, sorcerers shape reality with pure magical energy, becoming unpredictable adversaries and inexhaustible sources of arcane power.",
+		"description": "Sorcerers are beings gifted with innate magic, stemming from a mystical heritage or an arcane awakening in their blood. Unlike scholarly wizards, their magic flows naturally, manifesting in powerful spells and spontaneous effects. Guided by instinct and the strength of their lineage, sorcerers shape reality with pure magical energy, becoming unpredictable adversaries and inexhaustible sources of arcane power.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/485/420/618/636274643818663058.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 9,
+		"name": "Ranger",
+		"name_ptBR": "Patrulheiro",
+		"name_enUS": "Ranger",
+		"description_ptBR": "Os patrulheiros são caçadores versáteis, mestres da sobrevivência e rastreadores implacáveis. Adaptados à vida selvagem, conhecem os segredos da terra e dos animais, utilizando essas habilidades para caçar presas ou enfrentar ameaças ocultas. Seja empunhando arcos com precisão letal ou emboscando inimigos com lâminas afiadas, os patrulheiros combinam astúcia, agilidade e um profundo vínculo com a natureza para superar qualquer desafio.",
+		"description_enUS": "Rangers are versatile hunters, masters of survival, and relentless trackers. Adapted to the wilderness, they know the secrets of the land and animals, using these skills to hunt prey or face hidden threats. Whether wielding bows with lethal precision or ambushing enemies with sharp blades, rangers combine cunning, agility, and a deep bond with nature to overcome any challenge.",
+		"description": "Rangers are versatile hunters, masters of survival, and relentless trackers. Adapted to the wilderness, they know the secrets of the land and animals, using these skills to hunt prey or face hidden threats. Whether wielding bows with lethal precision or ambushing enemies with sharp blades, rangers combine cunning, agility, and a deep bond with nature to overcome any challenge.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/367/420/618/636272702826438096.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 10,
+		"name": "Fighter",
+		"name_ptBR": "Guerreiro",
+		"name_enUS": "Fighter",
+		"description_ptBR": "Os guerreiros são mestres da batalha, treinados em diversas armas e táticas de combate. Forjados pela disciplina e pela experiência, eles enfrentam qualquer desafio com força, resistência e estratégia. Seja brandindo uma lâmina gigantesca, empunhando um escudo indestrutível ou dominando manobras letais, os guerreiros são combatentes versáteis que transformam o campo de batalha em seu domínio.",
+		"description_enUS": "Fighters are masters of battle, trained in various weapons and combat tactics. Forged by discipline and experience, they face any challenge with strength, endurance, and strategy. Whether wielding a massive blade, carrying an indestructible shield, or mastering lethal maneuvers, fighters are versatile combatants who turn the battlefield into their domain.",
+		"description": "Fighters are masters of battle, trained in various weapons and combat tactics. Forged by discipline and experience, they face any challenge with strength, endurance, and strategy. Whether wielding a massive blade, carrying an indestructible shield, or mastering lethal maneuvers, fighters are versatile combatants who turn the battlefield into their domain.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/359/420/618/636272697874197438.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 11,
+		"name": "Wizard",
+		"name_ptBR": "Mago",
+		"name_enUS": "Wizard",
+		"description_ptBR": "Os magos são estudiosos do arcano, mestres do conhecimento e da manipulação mágica. Através de anos de estudo e dedicação, eles dominam feitiços poderosos que alteram a realidade, controlam os elementos e desvendam os segredos do universo. Embora fisicamente frágeis, sua inteligência e poder destrutivo os tornam adversários formidáveis, capazes de moldar o destino com um único encantamento.",
+		"description_enUS": "Wizards are scholars of the arcane, masters of knowledge and magical manipulation. Through years of study and dedication, they master powerful spells that alter reality, control the elements, and unravel the secrets of the universe. Although physically fragile, their intelligence and destructive power make them formidable adversaries, capable of shaping destiny with a single enchantment.",
+		"description": "Wizards are scholars of the arcane, masters of knowledge and magical manipulation. Through years of study and dedication, they master powerful spells that alter reality, control the elements, and unravel the secrets of the universe. Although physically fragile, their intelligence and destructive power make them formidable adversaries, capable of shaping destiny with a single enchantment.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/357/420/618/636272696881281556.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 12,
+		"name": "Monk",
+		"name_ptBR": "Monge",
+		"name_enUS": "Monk",
+		"description": "Monks are masters of physical and spiritual discipline, channeling their inner energy to perform superhuman feats. With agile and precise movements, they turn their own bodies into lethal weapons, delivering swift and devastating blows. Trained in martial arts and meditation, monks combine strength, speed, and wisdom to overcome any obstacle, achieving harmony between mind and body in the heat of combat.",
+		"description_ptBR": "Os monges são mestres da disciplina corporal e espiritual, canalizando sua energia interior para realizar feitos sobre-humanos. Com movimentos ágeis e precisos, eles transformam seu próprio corpo em uma arma letal, desferindo golpes rápidos e devastadores. Treinados em artes marciais e meditação, os monges combinam força, velocidade e sabedoria para superar qualquer obstáculo, atingindo a harmonia entre mente e corpo no calor do combate.",
+		"description_enUS": "Monks are masters of physical and spiritual discipline, channeling their inner energy to perform superhuman feats. With agile and precise movements, they turn their own bodies into lethal weapons, delivering swift and devastating blows. Trained in martial arts and meditation, monks combine strength, speed, and wisdom to overcome any obstacle, achieving harmony between mind and body in the heat of combat.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/489/420/618/636274646181411106.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	},
+	{
+		"id": 13,
+		"name": "Paladin",
+		"name_ptBR": "Paladino",
+		"name_enUS": "Paladin",
+		"description": "Paladins are champions of justice and faith, holy warriors imbued with divine power. Guided by a sacred oath, they face evil with unshakable courage, wielding gleaming swords and casting blessings to protect the innocent. Whether destroying enemies with righteous strikes or healing allies with their holy light, paladins embody devotion and righteousness on the battlefield.",
+		"description_ptBR": "Os paladinos são campeões da justiça e da fé, guerreiros sagrados imbuídos de poder divino. Guiados por um juramento sagrado, eles enfrentam o mal com coragem inabalável, brandindo espadas reluzentes e conjurando bênçãos para proteger os inocentes. Seja destruindo inimigos com golpes justos ou curando aliados com sua luz sagrada, os paladinos são a personificação da devoção e da retidão no campo de batalha.",
+		"description_enUS": "Paladins are champions of justice and faith, holy warriors imbued with divine power. Guided by a sacred oath, they face evil with unshakable courage, wielding gleaming swords and casting blessings to protect the innocent. Whether destroying enemies with righteous strikes or healing allies with their holy light, paladins embody devotion and righteousness on the battlefield.",
+		"url": "https://www.dndbeyond.com/avatars/thumbnails/6/365/420/618/636272701937419552.png",
+		"stats": [
+			{ "label": "Strength", "value": 1 },
+			{ "label": "Dexterity", "value": 1 },
+			{ "label": "Constitution", "value": 1 },
+			{ "label": "Intelligence", "value": 1 },
+			{ "label": "Wisdom", "value": 1 },
+			{ "label": "Charisma", "value": 1 }
+		]
+	}
+]
