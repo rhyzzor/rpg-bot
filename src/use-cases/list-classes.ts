@@ -1,28 +1,23 @@
-import { classCache } from "@/lib/cache";
-import { db } from "@/lib/database/drizzle";
-import { type ClassDTO, classTable } from "@/lib/database/schema";
-import { asc, eq } from "drizzle-orm";
+import data from "@/assets/class.json";
 
 interface ListClassesProps {
-	guildId: string;
+	locale: string;
 }
 
-export async function listClassesUseCase({ guildId }: ListClassesProps) {
-	const hasCache = await classCache.has(guildId);
+export function listClassesUseCase({ locale }: ListClassesProps) {
+	const localeWithoutBar = locale.replace("-", "") as "ptBR" | "enUS";
 
-	if (hasCache) {
-		const classes = await classCache.get<ClassDTO[]>(guildId);
+	const formattedData = data.map((item) => {
+		const name = item[`name_${localeWithoutBar}`] || item.name;
+		const description =
+			item[`description_${localeWithoutBar}`] || item.description;
 
-		if (classes) return classes;
-	}
+		return {
+			...item,
+			name,
+			description,
+		};
+	});
 
-	const classes = await db
-		.select()
-		.from(classTable)
-		.where(eq(classTable.guildId, guildId))
-		.orderBy(asc(classTable.name));
-
-	await classCache.set(guildId, classes);
-
-	return classes;
+	return formattedData;
 }
