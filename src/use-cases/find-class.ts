@@ -5,7 +5,7 @@ interface FindClassProps {
 	locale: string;
 }
 
-export async function findClassUseCase({ classId, locale }: FindClassProps) {
+export function findClassUseCase({ classId, locale }: FindClassProps) {
 	const selectedClass = classJSON.find((c) => c.id === classId);
 
 	if (!selectedClass) {
