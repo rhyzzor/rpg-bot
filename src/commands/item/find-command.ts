@@ -104,7 +104,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	const targetOptionInteraction = (await reply
 		.awaitMessageComponent({
 			filter: (i) => i.user.id === interaction.user.id,
-			time: 10_000,
+			time: 600_000,
 		})
 		.catch(async (_error) => {
 			await reply.edit({ embeds: [embed], components: [] });
