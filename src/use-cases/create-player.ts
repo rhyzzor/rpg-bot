@@ -21,9 +21,26 @@ export async function createPlayerUseCase(data: CreatePlayerProps) {
 		throw new ResourceNotFoundError();
 	}
 
+	const constitution =
+		selectedClass.stats.find(
+			(stat) => stat.label.toLowerCase() === "constitution",
+		)?.value ?? 0;
+
+	const intelligence =
+		selectedClass.stats.find(
+			(stat) => stat.label.toLowerCase() === "intelligence",
+		)?.value ?? 0;
+
+	const hp = 30 + constitution * 2;
+	const mana = 40 + intelligence * 2;
+
 	await db.insert(playerTable).values({
 		...data,
 		stats: selectedClass.stats,
+		hp,
+		mana,
+		level: 1,
+		points: 0,
 	});
 
 	await sheetCache.delete(data.guildId);

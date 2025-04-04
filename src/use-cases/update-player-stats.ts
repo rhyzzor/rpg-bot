@@ -7,6 +7,7 @@ interface UpdatePlayerStatsProps {
 	playerId: number;
 	guildId: string;
 	stats: StatsType[];
+	points?: number;
 	hp?: number;
 	mana?: number;
 }
@@ -16,6 +17,7 @@ export async function updatePlayerStatsUseCase({
 	stats,
 	hp,
 	mana,
+	points,
 }: UpdatePlayerStatsProps) {
 	const player = await db
 		.update(playerTable)
@@ -23,6 +25,7 @@ export async function updatePlayerStatsUseCase({
 			stats,
 			hp,
 			mana,
+			points,
 		})
 		.where(and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)))
 		.returning()
