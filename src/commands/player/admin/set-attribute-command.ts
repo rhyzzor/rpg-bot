@@ -1,12 +1,7 @@
 import { translate } from "@/lib/i18n";
 import { findPlayerUseCase } from "@/use-cases/find-player";
-import { listPlayersUseCase } from "@/use-cases/list-players";
 import { updatePlayerStatsUseCase } from "@/use-cases/update-player-stats";
-import type {
-	AutocompleteProps,
-	CommandOptions,
-	SlashCommandProps,
-} from "commandkit";
+import type { CommandOptions, SlashCommandProps } from "commandkit";
 import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
@@ -37,7 +32,38 @@ export const data = new SlashCommandBuilder()
 			.setDescriptionLocalizations({
 				"pt-BR": "Selecione um atributo para setar os pontos",
 			})
-			.setAutocomplete(true)
+			.addChoices([
+				{
+					name: "Strength",
+					value: "strength",
+					name_localizations: { "pt-BR": "Força" },
+				},
+				{
+					name: "Dexterity",
+					value: "dexterity",
+					name_localizations: { "pt-BR": "Destreza" },
+				},
+				{
+					name: "Constitution",
+					value: "constitution",
+					name_localizations: { "pt-BR": "Constituição" },
+				},
+				{
+					name: "Intelligence",
+					value: "intelligence",
+					name_localizations: { "pt-BR": "Inteligência" },
+				},
+				{
+					name: "Wisdom",
+					value: "wisdom",
+					name_localizations: { "pt-BR": "Sabedoria" },
+				},
+				{
+					name: "Charisma",
+					value: "charisma",
+					name_localizations: { "pt-BR": "Carisma" },
+				},
+			])
 			.setRequired(true),
 	)
 	.addIntegerOption((option) =>
@@ -105,63 +131,6 @@ export async function run({ interaction }: SlashCommandProps) {
 		}),
 		flags: "Ephemeral",
 	});
-}
-
-export async function autocomplete({ interaction }: AutocompleteProps) {
-	if (!interaction.guildId) return;
-
-	const focusedOption = interaction.options.getFocused(true);
-
-	if (focusedOption.name === "sheet") {
-		const sheets = await listPlayersUseCase({ guildId: interaction.guildId });
-
-		const filtered = sheets
-			.filter((sheet) =>
-				sheet.name.toLowerCase().startsWith(focusedOption.value.toLowerCase()),
-			)
-			.map((sheet) => ({
-				name: sheet.name,
-				value: sheet.id,
-			}));
-
-		return await interaction.respond(filtered);
-	}
-	if (focusedOption.name === "attribute") {
-		const lng = interaction.locale;
-
-		const attributes = [
-			{
-				name: translate("attribute.strength", { lng }),
-				value: "strength",
-			},
-			{
-				name: translate("attribute.dexterity", { lng }),
-				value: "dexterity",
-			},
-			{
-				name: translate("attribute.constitution", { lng }),
-				value: "constitution",
-			},
-			{
-				name: translate("attribute.intelligence", { lng }),
-				value: "intelligence",
-			},
-			{
-				name: translate("attribute.wisdom", { lng }),
-				value: "wisdom",
-			},
-			{
-				name: translate("attribute.charisma", { lng }),
-				value: "charisma",
-			},
-		];
-
-		const result = attributes.filter((item) =>
-			item.name.toLowerCase().startsWith(focusedOption.value.toLowerCase()),
-		);
-
-		return await interaction.respond(result);
-	}
 }
 
 export const options: CommandOptions = {

@@ -1,11 +1,7 @@
 import { translate } from "@/lib/i18n";
 import { findPlayerUseCase } from "@/use-cases/find-player";
 import { updatePlayerStatsUseCase } from "@/use-cases/update-player-stats";
-import type {
-	AutocompleteProps,
-	CommandOptions,
-	SlashCommandProps,
-} from "commandkit";
+import type { CommandOptions, SlashCommandProps } from "commandkit";
 import { SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
@@ -27,8 +23,45 @@ export const data = new SlashCommandBuilder()
 			.setDescriptionLocalizations({
 				"pt-BR": "Selecione um atributo para gastar seus pontos",
 			})
-			.setRequired(true)
-			.setAutocomplete(true),
+			.addChoices([
+				{
+					name: "Strength",
+					value: "strength",
+					name_localizations: { "pt-BR": "Força", "en-US": "Strength" },
+				},
+				{
+					name: "Dexterity",
+					value: "dexterity",
+					name_localizations: { "pt-BR": "Destreza", "en-US": "Dexterity" },
+				},
+				{
+					name: "Constitution",
+					value: "constitution",
+					name_localizations: {
+						"pt-BR": "Constituição",
+						"en-US": "Constitution",
+					},
+				},
+				{
+					name: "Intelligence",
+					value: "intelligence",
+					name_localizations: {
+						"pt-BR": "Inteligência",
+						"en-US": "Intelligence",
+					},
+				},
+				{
+					name: "Wisdom",
+					value: "wisdom",
+					name_localizations: { "pt-BR": "Sabedoria", "en-US": "Wisdom" },
+				},
+				{
+					name: "Charisma",
+					value: "charisma",
+					name_localizations: { "pt-BR": "Carisma", "en-US": "Charisma" },
+				},
+			])
+			.setRequired(true),
 	)
 	.addIntegerOption((option) =>
 		option
@@ -109,44 +142,6 @@ export async function run({ interaction }: SlashCommandProps) {
 		content: translate("player.points.update", { lng }),
 		flags: "Ephemeral",
 	});
-}
-
-export async function autocomplete({ interaction }: AutocompleteProps) {
-	const focusedOption = interaction.options.getFocused(true).value.trim();
-	const lng = interaction.locale;
-
-	const attributes = [
-		{
-			name: translate("attribute.strength", { lng }),
-			value: "strength",
-		},
-		{
-			name: translate("attribute.dexterity", { lng }),
-			value: "dexterity",
-		},
-		{
-			name: translate("attribute.constitution", { lng }),
-			value: "constitution",
-		},
-		{
-			name: translate("attribute.intelligence", { lng }),
-			value: "intelligence",
-		},
-		{
-			name: translate("attribute.wisdom", { lng }),
-			value: "wisdom",
-		},
-		{
-			name: translate("attribute.charisma", { lng }),
-			value: "charisma",
-		},
-	];
-
-	const result = attributes.filter((item) =>
-		item.name.toLowerCase().startsWith(focusedOption.toLowerCase()),
-	);
-
-	await interaction.respond(result);
 }
 
 export const options: CommandOptions = {
