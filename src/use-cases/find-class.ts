@@ -1,18 +1,23 @@
-import { db } from "@/lib/database/drizzle";
-import { classTable } from "@/lib/database/schema";
-import { and, eq } from "drizzle-orm";
+import classJSON from "@/assets/class.json";
 
 interface FindClassProps {
-	id: number;
-	guildId: string;
+	classId: number;
+	locale: string;
 }
 
-export async function findClassUseCase({ id, guildId }: FindClassProps) {
-	const selectedClass = await db
-		.select()
-		.from(classTable)
-		.where(and(eq(classTable.id, id), eq(classTable.guildId, guildId)))
-		.get();
+export async function findClassUseCase({ classId, locale }: FindClassProps) {
+	const selectedClass = classJSON.find((c) => c.id === classId);
 
-	return selectedClass;
+	if (!selectedClass) {
+		return null;
+	}
+
+	const localeWithoutBar = locale.replace("-", "") as "ptBR" | "enUS";
+
+	const name = selectedClass[`name_${localeWithoutBar}`] || selectedClass.name;
+	const description =
+		selectedClass[`description_${localeWithoutBar}`] ||
+		selectedClass.description;
+
+	return { ...selectedClass, name, description };
 }
