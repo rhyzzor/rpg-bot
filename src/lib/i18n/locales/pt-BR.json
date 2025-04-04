@@ -2,7 +2,9 @@
 	"button": {
 		"label": {
 			"delete": "Deletar",
-			"edit": "Editar"
+			"edit": "Editar",
+			"confirm": "Confirmar",
+			"cancel": "Cancelar"
 		}
 	},
 	"embed": {
@@ -46,6 +48,11 @@
 		}
 	},
 	"player": {
+		"class": {
+			"change-confirmation": "Tem certeza que deseja mudar a classe da ficha? **Os pontos serão resetados e o level voltará para 1.**",
+			"change": "Classe alterada com sucesso!",
+			"change-cancel": "Mudança de classe cancelada!"
+		},
 		"combat": "Combate realizado com sucesso!",
 		"reset": "Ficha resetada com sucesso!",
 		"restore": "Ficha restaurada com sucesso!",
@@ -104,7 +111,8 @@
 			"reset": "Os atributos da sua ficha foram resetados! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
 			"restore": "Sua mana e HP foram restaurados! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
 			"combat": "Você teve um combate! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
-			"dead": "Seu personagem morreu! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem"
+			"dead": "Seu personagem morreu! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem",
+			"class": "Seu personagem mudou de classe! Consulte no servidor **{{server}}** com o comando **/ficha** nomeDoPersonagem"
 		}
 	},
 	"class": {

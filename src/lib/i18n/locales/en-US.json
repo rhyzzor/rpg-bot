@@ -2,7 +2,9 @@
 	"button": {
 		"label": {
 			"delete": "Delete",
-			"edit": "Edit"
+			"edit": "Edit",
+			"confirm": "Confirm",
+			"cancel": "Cancel"
 		}
 	},
 	"embed": {
@@ -45,6 +47,11 @@
 		}
 	},
 	"player": {
+		"class": {
+			"change-confirmation": "Are you sure you want to change the class of the sheet? **The points will be reset and the level will return to 1.**",
+			"change": "Class changed successfully!",
+			"change-cancel": "Class change canceled!"
+		},
 		"combat": "Combat successfully completed!",
 		"reset": "Sheet reset successfully!",
 		"restore": "Sheet restored successfully!",
@@ -104,7 +111,8 @@
 			"reset": "The attributes of your character sheet have been reset! Check it on the server **{{server}}** with the command **/sheet** characterName",
 			"restore": "Your mana and HP have been restored! Check it on the server **{{server}}** with the command **/sheet** characterName",
 			"combat": "You had a combat! Check it on the server **{{server}}** with the command **/sheet** characterName",
-			"dead": "Your character died! Check it on the server **{{server}}** with the command **/sheet** characterName"
+			"dead": "Your character died! Check it on the server **{{server}}** with the command **/sheet** characterName",
+			"class": "Your character has changed class! Check it on the server **{{server}}** with the command **/sheet** characterName"
 		}
 	},
 	"class": {
