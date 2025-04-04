@@ -1,16 +1,8 @@
+import classData from "@/assets/class.json";
 import { translate } from "@/lib/i18n";
 import { findClassUseCase } from "@/use-cases/find-class";
-import { listClassesUseCase } from "@/use-cases/list-classes";
-import type {
-	AutocompleteProps,
-	CommandOptions,
-	SlashCommandProps,
-} from "commandkit";
-import {
-	type ApplicationCommandOptionChoiceData,
-	EmbedBuilder,
-	SlashCommandBuilder,
-} from "discord.js";
+import type { CommandOptions, SlashCommandProps } from "commandkit";
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 
 export const data = new SlashCommandBuilder()
 	.setName("class")
@@ -24,11 +16,17 @@ export const data = new SlashCommandBuilder()
 	.addIntegerOption((option) =>
 		option
 			.setName("name")
-			.setDescription("Class Name")
+			.setDescription("Select a class")
 			.setNameLocalizations({ "pt-BR": "nome" })
-			.setDescriptionLocalizations({ "pt-BR": "Nome da classe" })
+			.setDescriptionLocalizations({ "pt-BR": "Selecione uma classe" })
 			.setRequired(true)
-			.setAutocomplete(true),
+			.addChoices(
+				classData.map((c) => ({
+					name: c.name,
+					value: c.id,
+					name_localizations: { "pt-BR": c.name_ptBR, "en-US": c.name_enUS },
+				})),
+			),
 	);
 
 export async function run({ interaction }: SlashCommandProps) {
@@ -37,7 +35,7 @@ export async function run({ interaction }: SlashCommandProps) {
 	const classId = interaction.options.getInteger("name", true);
 	const locale = interaction.locale;
 
-	const selectedClass = await findClassUseCase({ classId, locale });
+	const selectedClass = findClassUseCase({ classId, locale });
 
 	if (!selectedClass) {
 		return await interaction.reply({
@@ -66,27 +64,6 @@ export async function run({ interaction }: SlashCommandProps) {
 		});
 
 	return await interaction.reply({ embeds: [embed] });
-}
-
-export async function autocomplete({ interaction }: AutocompleteProps) {
-	if (!interaction.guildId) return;
-
-	const focusedOption = interaction.options.getFocused(true);
-
-	const classes = listClassesUseCase({ locale: interaction.locale });
-
-	const filtered: ApplicationCommandOptionChoiceData[] = classes
-		.filter((item) =>
-			item.name
-				.toLowerCase()
-				.startsWith(focusedOption.value.trim().toLowerCase()),
-		)
-		.map((item) => ({
-			name: item.name,
-			value: item.id,
-		}));
-
-	await interaction.respond(filtered);
 }
 
 export const options: CommandOptions = {
