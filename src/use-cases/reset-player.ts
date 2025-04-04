@@ -24,7 +24,7 @@ export async function resetPlayerUseCase({
 	const sheet = await db.transaction(async (tx) => {
 		const sheet = await tx
 			.update(playerTable)
-			.set({ points: 0, stats })
+			.set({ points: 0, stats, level: 1, hp: 32, mana: 42 })
 			.where(
 				and(eq(playerTable.id, playerId), eq(playerTable.guildId, guildId)),
 			)

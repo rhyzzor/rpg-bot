@@ -12,9 +12,9 @@ import { SlashCommandBuilder } from "discord.js";
 export const data = new SlashCommandBuilder()
 	.setName("reset-sheet")
 	.setNameLocalizations({ "pt-BR": "resetar-ficha" })
-	.setDescription("Reset the atributes of a sheet [ADMIN]")
+	.setDescription("Reset a sheet (Inventory, Attributes, Level) [ADMIN]")
 	.setDescriptionLocalizations({
-		"pt-BR": "Reseta os atributos de uma ficha [ADMIN]",
+		"pt-BR": "Reseta uma ficha (Invetário, Atributos, Level) [ADMIN]",
 	})
 	.addIntegerOption((option) =>
 		option
