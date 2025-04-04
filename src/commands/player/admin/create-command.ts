@@ -8,7 +8,10 @@ import type {
 	CommandOptions,
 	SlashCommandProps,
 } from "commandkit";
-import { SlashCommandBuilder } from "discord.js";
+import {
+	type ApplicationCommandOptionChoiceData,
+	SlashCommandBuilder,
+} from "discord.js";
 
 export const data = new SlashCommandBuilder()
 	.setName("create-sheet")
@@ -87,7 +90,7 @@ export async function run({ interaction }: SlashCommandProps) {
 
 	await createPlayerUseCase({
 		background,
-		classId: Number(selectedClass),
+		classId: selectedClass,
 		extraDetails,
 		guildId: modalInteraction.guildId,
 		name,
@@ -112,15 +115,11 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 		return;
 	}
 
-	const guildId = interaction.guildId;
-
 	const focusedOption = interaction.options.getFocused(true).value.trim();
 
-	const classes = await listClassesUseCase({
-		guildId,
-	});
+	const classes = listClassesUseCase({ locale: interaction.locale });
 
-	const result = classes
+	const result: ApplicationCommandOptionChoiceData[] = classes
 		.filter((item) =>
 			item.name.toLowerCase().startsWith(focusedOption.toLowerCase()),
 		)

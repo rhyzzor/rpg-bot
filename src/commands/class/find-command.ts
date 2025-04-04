@@ -24,7 +24,7 @@ export const data = new SlashCommandBuilder()
 	.addIntegerOption((option) =>
 		option
 			.setName("name")
-			.setDescription("Class name")
+			.setDescription("Class Name")
 			.setNameLocalizations({ "pt-BR": "nome" })
 			.setDescriptionLocalizations({ "pt-BR": "Nome da classe" })
 			.setRequired(true)
@@ -34,16 +34,15 @@ export const data = new SlashCommandBuilder()
 export async function run({ interaction }: SlashCommandProps) {
 	if (!interaction.guildId) return;
 
-	const guildId = interaction.guildId;
+	const classId = interaction.options.getInteger("name", true);
+	const locale = interaction.locale;
 
-	const id = interaction.options.getInteger("name", true);
-
-	const selectedClass = await findClassUseCase({ id, guildId });
+	const selectedClass = await findClassUseCase({ classId, locale });
 
 	if (!selectedClass) {
 		return await interaction.reply({
 			content: translate("class.errors.not-found", {
-				lng: interaction.locale,
+				lng: locale,
 			}),
 			flags: "Ephemeral",
 		});
@@ -56,7 +55,7 @@ export async function run({ interaction }: SlashCommandProps) {
 		.setImage(selectedClass.url)
 		.addFields({
 			name: translate("attribute.label", {
-				lng: interaction.locale,
+				lng: locale,
 			}).toUpperCase(),
 			value: selectedClass.stats
 				.map(
@@ -74,19 +73,17 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 
 	const focusedOption = interaction.options.getFocused(true);
 
-	const classes = await listClassesUseCase({
-		guildId: interaction.guildId,
-	});
+	const classes = listClassesUseCase({ locale: interaction.locale });
 
 	const filtered: ApplicationCommandOptionChoiceData[] = classes
-		.filter((sheet) =>
-			sheet.name
+		.filter((item) =>
+			item.name
 				.toLowerCase()
 				.startsWith(focusedOption.value.trim().toLowerCase()),
 		)
-		.map((sheet) => ({
-			name: sheet.name,
-			value: sheet.id,
+		.map((item) => ({
+			name: item.name,
+			value: item.id,
 		}));
 
 	await interaction.respond(filtered);

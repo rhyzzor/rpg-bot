@@ -1,7 +1,7 @@
+import classJSON from "@/assets/class.json";
 import { sheetCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
-import { classTable, playerTable } from "@/lib/database/schema";
-import { eq } from "drizzle-orm";
+import { playerTable } from "@/lib/database/schema";
 import { ResourceNotFoundError } from "./errors/resource-not-found-error";
 
 interface CreatePlayerProps {
@@ -15,17 +15,16 @@ interface CreatePlayerProps {
 }
 
 export async function createPlayerUseCase(data: CreatePlayerProps) {
-	const selectedClass = await db
-		.select()
-		.from(classTable)
-		.where(eq(classTable.id, data.classId))
-		.get();
+	const selectedClass = classJSON.find((c) => c.id === data.classId);
 
 	if (!selectedClass) {
 		throw new ResourceNotFoundError();
 	}
 
-	await db.insert(playerTable).values({ ...data, stats: selectedClass.stats });
+	await db.insert(playerTable).values({
+		...data,
+		stats: selectedClass.stats,
+	});
 
 	await sheetCache.delete(data.guildId);
 }
