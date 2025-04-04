@@ -82,26 +82,21 @@ export async function run({ interaction }: SlashCommandProps) {
 		return stat;
 	});
 
-	let hp = sheet.hp;
-	let mana = sheet.mana;
-	let level = sheet.level;
+	let hp = undefined;
+	let mana = undefined;
 
-	if (attribute === "hp") {
-		hp = points;
-	} else if (attribute === "mana") {
-		mana = points;
-	} else if (attribute === "level") {
-		level = points;
+	if (attribute === "constitution") {
+		hp = 30 + (sheet.level - 1) * 5 + points * 2;
+	} else if (attribute === "intelligence") {
+		mana = 40 + (sheet.level - 1) * 5 + points * 2;
 	}
 
 	await updatePlayerStatsUseCase({
 		guildId,
 		playerId,
 		stats: newStats,
-		points,
 		hp,
 		mana,
-		level,
 	});
 
 	return await interaction.reply({
@@ -158,18 +153,6 @@ export async function autocomplete({ interaction }: AutocompleteProps) {
 			{
 				name: translate("attribute.charisma", { lng }),
 				value: "charisma",
-			},
-			{
-				name: "HP",
-				value: "hp",
-			},
-			{
-				name: "Mana",
-				value: "mana",
-			},
-			{
-				name: "Level",
-				value: "level",
 			},
 		];
 
