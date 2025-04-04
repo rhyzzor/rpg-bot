@@ -19,21 +19,6 @@ export type StatsType = {
 	value: number;
 };
 
-export const classTable = sqliteTable("class", {
-	id: integer("id").primaryKey({ autoIncrement: true }),
-	guildId: text("guild_id").notNull(),
-	name: text("name").notNull(),
-	description: text("description").notNull(),
-	url: text("url")
-		.notNull()
-		.default(
-			"https://thumbs.dreamstime.com/b/povos-3d-brancos-com-um-ponto-de-interroga%C3%A7%C3%A3o-27709668.jpg",
-		),
-	stats: text("stats", { mode: "json" }).$type<StatsType[]>().notNull(),
-});
-
-export type ClassDTO = typeof classTable.$inferSelect;
-
 export const playerTable = sqliteTable("player", {
 	id: integer("id").primaryKey({ autoIncrement: true }),
 	level: integer("level").notNull().default(1),
@@ -44,9 +29,7 @@ export const playerTable = sqliteTable("player", {
 	mana: integer("mana").notNull().default(40),
 	externalId: text("external_id"),
 	guildId: text("guild_id").notNull(),
-	classId: integer("class_id")
-		.references(() => classTable.id)
-		.notNull(),
+	classId: integer("class_id").notNull(),
 	name: text("name").notNull(),
 	url: text("url").notNull(),
 	background: text("background").notNull(),
