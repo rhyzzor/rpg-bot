@@ -1,6 +1,7 @@
 import { sheetCache } from "@/lib/cache";
 import { db } from "@/lib/database/drizzle";
 import { inventoryTable } from "@/lib/database/schema";
+import { and, eq } from "drizzle-orm";
 import { findPlayerUseCase } from "./find-player";
 
 interface CreateInventoryProps {
@@ -16,6 +17,20 @@ export async function createInventoryUseCase({
 	playerId,
 	quantity,
 }: CreateInventoryProps) {
+	if (quantity === 0) {
+		await db
+			.delete(inventoryTable)
+			.where(
+				and(
+					eq(inventoryTable.guildId, guildId),
+					eq(inventoryTable.itemId, itemId),
+					eq(inventoryTable.playerId, playerId),
+				),
+			);
+
+		return;
+	}
+
 	await db
 		.insert(inventoryTable)
 		.values({ guildId, itemId, playerId, quantity })

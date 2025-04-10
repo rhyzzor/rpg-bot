@@ -47,6 +47,7 @@ export const data = new SlashCommandBuilder()
 			.setDescriptionLocalizations({
 				"pt-BR": "A quantidade do item",
 			})
+			.setMinValue(0)
 			.setRequired(true),
 	);
 
