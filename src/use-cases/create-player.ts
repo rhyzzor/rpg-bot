@@ -31,8 +31,8 @@ export async function createPlayerUseCase(data: CreatePlayerProps) {
 			(stat) => stat.label.toLowerCase() === "intelligence",
 		)?.value ?? 0;
 
-	const hp = 30 + constitution * 2;
-	const mana = 40 + intelligence * 2;
+	const hp = 30 + constitution * 3;
+	const mana = 40 + intelligence * 3;
 
 	await db.insert(playerTable).values({
 		...data,

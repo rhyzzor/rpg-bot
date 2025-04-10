@@ -112,9 +112,9 @@ export async function run({ interaction }: SlashCommandProps) {
 	let mana = undefined;
 
 	if (attribute === "constitution") {
-		hp = 30 + (sheet.level - 1) * 5 + points * 2;
+		hp = 30 + (sheet.level - 1) * 5 + points * 3;
 	} else if (attribute === "intelligence") {
-		mana = 40 + (sheet.level - 1) * 5 + points * 2;
+		mana = 40 + (sheet.level - 1) * 5 + points * 3;
 	}
 
 	await updatePlayerStatsUseCase({

@@ -10,8 +10,8 @@ export function calculateHpAndMana(player: PlayerDTO) {
 		stats.find((stat) => stat.label.toLowerCase() === "intelligence")?.value ??
 		0;
 
-	const hp = 30 + (level - 1) * 5 + constitution * 2;
-	const mana = 40 + (level - 1) * 5 + intelligence * 2;
+	const hp = 30 + (level - 1) * 5 + constitution * 3;
+	const mana = 40 + (level - 1) * 5 + intelligence * 3;
 
 	return { hp, mana };
 }

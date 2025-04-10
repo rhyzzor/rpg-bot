@@ -122,11 +122,11 @@ export async function run({ interaction }: SlashCommandProps) {
 	let mana = sheet.mana;
 
 	if (attribute === "constitution") {
-		hp += quantity * 2;
+		hp += quantity * 3;
 	}
 
 	if (attribute === "intelligence") {
-		mana += quantity * 2;
+		mana += quantity * 3;
 	}
 
 	await updatePlayerStatsUseCase({
